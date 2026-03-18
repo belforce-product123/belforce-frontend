@@ -22,7 +22,7 @@ function MembershipHero() {
                 from day one (10–20 listings).
               </div>
               <div className="membership-hero__buttons-row">
-                <Link to="/membership-plans" className="membership-hero__btn membership-hero__btn--primary">
+                <Link to="/membership-plans#plans" className="membership-hero__btn membership-hero__btn--primary">
                   Pre-order subscription NOW
                 </Link>
                 <Link to="/how-it-works" className="membership-hero__btn membership-hero__btn--secondary">
@@ -75,7 +75,7 @@ function MembershipHero() {
                 </svg>
                 Watch How It Works
               </Link>
-              <Link to="/membership-plans" className="membership-hero__mobile-btn membership-hero__mobile-btn--primary">
+              <Link to="/membership-plans#plans" className="membership-hero__mobile-btn membership-hero__mobile-btn--primary">
                 Pre-order subscription
               </Link>
             </div>

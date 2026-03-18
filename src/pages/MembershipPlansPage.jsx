@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import MembershipHero from '../components/membership/MembershipHero';
 import MembershipHowItWorksWeb from '../components/membership/MembershipHowItWorksWeb';
 import SellersHowItWorks from '../components/membership/SellersHowItWorks';
@@ -13,6 +15,22 @@ import MembershipSaveSection from '../components/membership/MembershipSaveSectio
 import MoreCategoriesComingSection from '../components/membership/MoreCategoriesComingSection';
 
 function MembershipPlansPage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace('#', '');
+    if (!id) return;
+
+    // Give React time to paint content before scrolling.
+    const t = window.setTimeout(() => {
+      const el = document.getElementById(id);
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+
+    return () => window.clearTimeout(t);
+  }, [location.hash]);
+
   return (
     <>
       <MembershipHero />

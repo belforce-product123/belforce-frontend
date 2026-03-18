@@ -103,7 +103,7 @@ function MoreCategoriesComingSection() {
       </div>
       <p className="more-categories-coming__tagline">#BelForce is more than phones.</p>
       <Link
-        to="/membership-plans"
+        to="/membership-plans#plans"
         className="more-categories-coming__cta"
       >
         Sell up to 20 items effortlessly and maximize your value - exclusively on BelForce

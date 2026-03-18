@@ -16,7 +16,7 @@ function SaveBigSection() {
             </p>
           </div>
         </div>
-        <Link to="/membership-plans" className="save-big-section__btn">
+        <Link to="/membership-plans#plans" className="save-big-section__btn">
           Pre-order subsription now
         </Link>
       </div>
