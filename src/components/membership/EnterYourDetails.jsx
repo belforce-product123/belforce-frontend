@@ -4,6 +4,18 @@ import { apiFetch } from '../../utils/apiClient';
 import { env } from '../../utils/env';
 import { loadRazorpayCheckout } from '../../utils/razorpay';
 
+const INDIA_COUNTRY_CODE = '+91';
+const DISALLOWED_EMAIL_DOMAINS = new Set([
+  'example.com',
+  'example.org',
+  'example.net',
+  'test.com',
+  'mailinator.com',
+  'tempmail.com',
+  '10minutemail.com',
+  'guerrillamail.com',
+]);
+
 const USE_OPTIONS = [
   { value: 'seller', label: 'Seller', desc: 'Sell used electronics faster' },
   { value: 'buyer', label: 'Buyer', desc: 'Buy verified items with confidence' },
@@ -28,6 +40,23 @@ function EnterYourDetails() {
   const [existingMembership, setExistingMembership] = useState(null);
 
   const navigate = useNavigate();
+
+  const validateEmail = (value) => {
+    const email = String(value || '').trim().toLowerCase();
+    // Basic sanity checks: one @, non-empty parts, and a reasonable domain structure.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return false;
+    if (email.includes('..')) return false;
+
+    const [, domain = ''] = email.split('@');
+    if (!domain || domain.startsWith('.') || domain.endsWith('.')) return false;
+    if (DISALLOWED_EMAIL_DOMAINS.has(domain)) return false;
+
+    // Block obvious placeholders like "test@" or "fake@" in the local-part.
+    const local = email.split('@')[0] || '';
+    if (/^(test|fake|demo|sample|example)\b/.test(local)) return false;
+
+    return true;
+  };
 
   const planSummary = useMemo(() => {
     if (plan === 'dummy_plan') {
@@ -86,8 +115,8 @@ function EnterYourDetails() {
     const useType = String(form.useType || '').trim();
 
     if (fullName.length < 2) errors.fullName = 'Full name is required';
-    if (phoneDigits.length < 10) errors.phone = 'Valid phone number is required';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Valid email is required';
+    if (phoneDigits.length !== 10) errors.phone = 'Enter a valid 10-digit Indian mobile number';
+    if (!validateEmail(email)) errors.email = 'Enter a valid, genuine email address';
     if (address.length < 5) errors.address = 'Address is required';
     if (!useType) errors.useType = 'Please select how you will use BelForce';
 
@@ -105,11 +134,15 @@ function EnterYourDetails() {
       setSubmitError('');
       setExistingMembership(null);
 
+      const phoneDigits = String(form.phone || '').replace(/\D/g, '').slice(-10);
+      const phoneE164 = `${INDIA_COUNTRY_CODE}${phoneDigits}`;
+
       const result = await apiFetch('/memberships/registrations', {
         method: 'POST',
         body: JSON.stringify({
           plan,
           ...form,
+          phone: phoneE164,
         }),
       });
 
@@ -134,7 +167,7 @@ function EnterYourDetails() {
         prefill: {
           name: form.fullName,
           email: form.email,
-          contact: form.phone,
+          contact: phoneE164,
         },
         notes: {
           membershipId: order.membershipId,
@@ -270,17 +303,43 @@ function EnterYourDetails() {
 
         <div className="enter-details__field">
           <label htmlFor="phone" className="enter-details__label">Phone Number</label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="+1 234 567 8900"
-            value={form.phone}
-            onChange={handleChange}
-            className="enter-details__input"
-            required
-          />
-          <span className="enter-details__helper">This will be your primary login.</span>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <div
+              aria-hidden
+              style={{
+                minWidth: 64,
+                height: 44,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0 12px',
+                borderRadius: 10,
+                border: '1px solid rgba(15, 23, 42, 0.15)',
+                background: '#f8fafc',
+                fontWeight: 800,
+                color: '#0f172a',
+              }}
+            >
+              {INDIA_COUNTRY_CODE}
+            </div>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              inputMode="numeric"
+              autoComplete="tel-national"
+              placeholder="10-digit mobile number"
+              value={form.phone}
+              onChange={(e) => {
+                const digits = String(e.target.value || '').replace(/\D/g, '').slice(0, 10);
+                handleChange({ target: { name: 'phone', value: digits } });
+              }}
+              className="enter-details__input"
+              maxLength={10}
+              required
+            />
+          </div>
+          <span className="enter-details__helper">India numbers only. We’ll save it as {INDIA_COUNTRY_CODE}XXXXXXXXXX.</span>
           {fieldErrors.phone ? (
             <span role="alert" style={{ display: 'block', marginTop: 6, color: '#dc2626', fontWeight: 600 }}>
               {fieldErrors.phone}
@@ -294,7 +353,7 @@ function EnterYourDetails() {
             id="email"
             name="email"
             type="email"
-            placeholder="jane.doe@example.com"
+            placeholder="name@gmail.com"
             value={form.email}
             onChange={handleChange}
             className="enter-details__input"
