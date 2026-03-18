@@ -4330,12 +4330,13 @@ a {
     gap: 0.5rem;
   }
   .hero__right {
-    margin-top: 1rem;
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    margin-top: 1rem;
+    margin-right: 0;
+    margin-bottom: 0;
     padding: 0;
     background: transparent;
-    margin: 0;
   }
   .hero__carousel {
     max-width: none;
