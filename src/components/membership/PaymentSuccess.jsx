@@ -7,7 +7,7 @@ import logoPngUrl from '../../assets/logo/logo.png';
 const PLAN_CONFIG = {
   pro: { title: 'BelForce Pro', amountInr: 699 },
   promax: { title: 'BelForce Pro Max', amountInr: 1599 },
-  dummy_plan: { title: 'Dummy Plan (Test)', amountInr: 1 },
+  // Test-only plan removed from client-facing UI
 };
 
 const BENEFITS = [

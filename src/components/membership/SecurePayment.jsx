@@ -14,11 +14,7 @@ const PLAN_CONFIG = {
     amount: '1599',
     displayAmount: '₹1,599.00',
   },
-  dummy_plan: {
-    title: 'Dummy Plan (Test)',
-    amount: '1',
-    displayAmount: '₹1.00',
-  },
+  // Test-only plan removed from client-facing UI
 };
 
 const PAYMENT_OPTIONS = [

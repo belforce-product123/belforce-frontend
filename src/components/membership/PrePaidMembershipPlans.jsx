@@ -69,6 +69,7 @@ function PrePaidMembershipPlans() {
             </Link>
           </div>
 
+          {/*
           <div className="prepaid-membership-plans__card">
             <div className="prepaid-membership-plans__badge">Test Plan</div>
             <h3 className="prepaid-membership-plans__card-title">Dummy Plan</h3>
@@ -88,10 +89,11 @@ function PrePaidMembershipPlans() {
               <span className="prepaid-membership-plans__currency">₹</span>
               <span className="prepaid-membership-plans__amount">1</span>
             </div>
-            <Link to="/membership-plans/choose-plan?plan=dummy_plan" className="prepaid-membership-plans__btn">
+            <Link to="/membership-plans/choose-plan?plan=__disabled__" className="prepaid-membership-plans__btn">
               Choose Dummy Plan
             </Link>
           </div>
+          */}
         </div>
         <div className="prepaid-membership-plans__bottom-cta">
           <p className="prepaid-membership-plans__bottom-text">Check out Subscription details and benefits in selling used items</p>
