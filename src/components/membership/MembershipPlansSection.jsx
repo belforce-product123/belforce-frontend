@@ -19,7 +19,7 @@ const PRO_MAX_BENEFITS = [
 
 function MembershipPlansSection() {
   return (
-    <section className="membership-plans">
+    <section className="membership-plans" id="plans">
       <h2 className="membership-plans__heading">Pre-Paid Membership Plans</h2>
       <div className="membership-plans__cards">
         <div className="membership-plans__card">

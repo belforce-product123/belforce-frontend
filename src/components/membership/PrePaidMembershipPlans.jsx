@@ -19,7 +19,7 @@ const PRO_MAX_FEATURES = [
 
 function PrePaidMembershipPlans() {
   return (
-    <section className="prepaid-membership-plans" id="plans">
+    <section className="prepaid-membership-plans">
       <div className="prepaid-membership-plans__inner">
         <h2 className="prepaid-membership-plans__heading">Pre-Paid Membership Plans</h2>
         <div className="prepaid-membership-plans__cards">
@@ -97,7 +97,7 @@ function PrePaidMembershipPlans() {
         </div>
         <div className="prepaid-membership-plans__bottom-cta">
           <p className="prepaid-membership-plans__bottom-text">Check out Subscription details and benefits in selling used items</p>
-          <Link to="/membership-plans" className="prepaid-membership-plans__bottom-btn">
+          <Link to="/membership-plans#plans" className="prepaid-membership-plans__bottom-btn">
             Subsription details & benifits
           </Link>
         </div>

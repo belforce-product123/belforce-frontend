@@ -4174,11 +4174,7 @@ a {
     height: auto;
     min-height: auto;
     padding: 0;
-    background: #F8F9FAFF;
-    background-image:
-      radial-gradient(circle at top right, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
-      radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-    background-size: 100% 100%, 16px 16px;
+    background: linear-gradient(180deg, #38A9FAFF 0%, #3838FAFF 100%);
   }
   .hero__content {
     flex-direction: column;
@@ -4336,7 +4332,9 @@ a {
     margin: 0;
   }
   .hero__carousel {
-    max-width: 100%;
+    max-width: none;
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
   }
   .hero__carousel-arrow {
     color: #00000080;
@@ -4352,6 +4350,7 @@ a {
   }
   .hero__carousel-main {
     box-shadow: 0 4px 12px #00000026;
+    border-radius: 0;
   }
   .hero__thumbnails {
     display: none;

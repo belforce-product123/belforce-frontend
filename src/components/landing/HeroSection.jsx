@@ -37,7 +37,7 @@ function HeroSection() {
             A better way to sell used electronics is coming.
           </p>
           <div className="hero__buttons">
-            <Link to="/membership-plans" className="hero__btn hero__btn--early-access">
+            <Link to="/membership-plans#plans" className="hero__btn hero__btn--early-access">
               <svg className="hero__btn-icon hero__btn-icon--membership" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7v3h14v-3a7 7 0 00-7-7z" />
               </svg>
