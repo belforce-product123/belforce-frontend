@@ -72,6 +72,9 @@ function PaymentSuccess() {
     const left = 48;
     const right = pageWidth - 48;
     const contentWidth = right - left;
+    const pad = 16;
+    const gap = 14;
+    const lineH = 14;
 
     const drawRoundedCard = (x, y, w, h) => {
       doc.setDrawColor(229, 231, 235);
@@ -79,16 +82,51 @@ function PaymentSuccess() {
       doc.roundedRect(x, y, w, h, 14, 14, 'FD');
     };
 
-    const labelValueRow = (y, label, value) => {
+    const wrap = (text, maxWidth) => doc.splitTextToSize(String(text || '-'), maxWidth);
+
+    const drawSectionTitle = (x, y, title) => {
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(17, 24, 39);
+      doc.setFontSize(13.5);
+      doc.text(title, x, y);
+      doc.setDrawColor(229, 231, 235);
+      doc.setLineWidth(1);
+      doc.line(x, y + 10, x + (contentWidth - pad * 2), y + 10);
+      return y + 28;
+    };
+
+    const drawKV = (x, y, label, value, { mono = false } = {}) => {
+      const innerW = contentWidth - pad * 2;
+      const labelW = 150;
+      const valueX = x + labelW + gap;
+      const valueW = innerW - labelW - gap;
+
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(107, 114, 128);
-      doc.setFontSize(10.5);
-      doc.text(label.toUpperCase(), left + 16, y);
+      doc.setFontSize(10);
+      const labelLines = wrap(String(label || '').toUpperCase(), labelW);
 
-      doc.setFont('helvetica', 'normal');
+      doc.setFont(mono ? 'courier' : 'helvetica', 'normal');
       doc.setTextColor(17, 24, 39);
-      doc.setFontSize(12);
-      doc.text(String(value || '-'), left + 170, y);
+      doc.setFontSize(mono ? 10.5 : 11.5);
+      const valueLines = wrap(value || '-', valueW);
+
+      const lines = Math.max(labelLines.length, valueLines.length);
+      const blockH = lines * lineH;
+
+      // Label
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(107, 114, 128);
+      doc.setFontSize(10);
+      doc.text(labelLines, x, y);
+
+      // Value
+      doc.setFont(mono ? 'courier' : 'helvetica', 'normal');
+      doc.setTextColor(17, 24, 39);
+      doc.setFontSize(mono ? 10.5 : 11.5);
+      doc.text(valueLines, valueX, y);
+
+      return y + blockH + 10;
     };
 
     // Header
@@ -121,78 +159,110 @@ function PaymentSuccess() {
     doc.setTextColor(255, 255, 255);
     doc.text('PAID', pillX + 22, pillY + 15);
 
-    // Main card
-    drawRoundedCard(left, 96, contentWidth, 420);
+    // Layout starts
+    let cursorY = 96;
 
-    doc.setTextColor(17, 24, 39);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(14);
-    doc.text('Receipt Summary', left + 16, 128);
+    // Summary card (dynamic height)
+    const summaryStartY = cursorY;
+    // draw placeholder; we'll draw final height after calculating
+    let y = summaryStartY + 32;
+    y = drawSectionTitle(left + pad, y, 'Receipt Summary');
 
-    doc.setDrawColor(229, 231, 235);
-    doc.line(left + 16, 140, right - 16, 140);
+    y = drawKV(left + pad, y, 'Receipt No', receiptNo, { mono: true });
+    y = drawKV(left + pad, y, 'Issued At', issuedAt.toLocaleString('en-IN'));
+    y = drawKV(left + pad, y, 'Customer Name', fullName);
+    if (email) y = drawKV(left + pad, y, 'Email', email);
+    if (phone) y = drawKV(left + pad, y, 'Phone', phone, { mono: true });
+    if (useType) y = drawKV(left + pad, y, 'Use Type', useType);
+    y = drawKV(left + pad, y, 'Plan', config.title);
+    y = drawKV(
+      left + pad,
+      y,
+      'Amount Paid',
+      `${currency === 'INR' ? '₹' : ''}${amount.toLocaleString('en-IN')}${currency !== 'INR' ? ` ${currency}` : ''}`
+    );
 
-    let y = 168;
-    labelValueRow(y, 'Receipt No', receiptNo); y += 24;
-    labelValueRow(y, 'Issued At', issuedAt.toLocaleString('en-IN')); y += 24;
-    labelValueRow(y, 'Customer Name', fullName); y += 24;
-    if (email) { labelValueRow(y, 'Email', email); y += 24; }
-    if (phone) { labelValueRow(y, 'Phone', phone); y += 24; }
-    if (useType) { labelValueRow(y, 'Use Type', useType); y += 24; }
-    labelValueRow(y, 'Plan', config.title); y += 24;
-    labelValueRow(y, 'Amount Paid', `${currency === 'INR' ? '₹' : ''}${amount.toLocaleString('en-IN')}${currency !== 'INR' ? ` ${currency}` : ''}`); y += 24;
+    const summaryH = Math.max(180, y - summaryStartY + 10);
+    drawRoundedCard(left, summaryStartY, contentWidth, summaryH);
+    // Redraw content on top of card
+    y = summaryStartY + 32;
+    y = drawSectionTitle(left + pad, y, 'Receipt Summary');
+    y = drawKV(left + pad, y, 'Receipt No', receiptNo, { mono: true });
+    y = drawKV(left + pad, y, 'Issued At', issuedAt.toLocaleString('en-IN'));
+    y = drawKV(left + pad, y, 'Customer Name', fullName);
+    if (email) y = drawKV(left + pad, y, 'Email', email);
+    if (phone) y = drawKV(left + pad, y, 'Phone', phone, { mono: true });
+    if (useType) y = drawKV(left + pad, y, 'Use Type', useType);
+    y = drawKV(left + pad, y, 'Plan', config.title);
+    y = drawKV(
+      left + pad,
+      y,
+      'Amount Paid',
+      `${currency === 'INR' ? '₹' : ''}${amount.toLocaleString('en-IN')}${currency !== 'INR' ? ` ${currency}` : ''}`
+    );
 
-    // Payment references section
-    y += 8;
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(17, 24, 39);
-    doc.setFontSize(13);
-    doc.text('Payment References', left + 16, y);
-    y += 12;
-    doc.setDrawColor(229, 231, 235);
-    doc.line(left + 16, y, right - 16, y);
-    y += 26;
+    cursorY = summaryStartY + summaryH + 16;
 
-    labelValueRow(y, 'Razorpay Order ID', razorpayOrderId || '-'); y += 24;
-    labelValueRow(y, 'Razorpay Payment ID', razorpayPaymentId || '-'); y += 24;
+    // Payment refs card
+    const refsStartY = cursorY;
+    let ry = refsStartY + 32;
+    ry = drawSectionTitle(left + pad, ry, 'Payment References');
+    ry = drawKV(left + pad, ry, 'Razorpay Order ID', razorpayOrderId || '-', { mono: true });
+    ry = drawKV(left + pad, ry, 'Razorpay Payment ID', razorpayPaymentId || '-', { mono: true });
+    const refsH = Math.max(140, ry - refsStartY + 10);
+    drawRoundedCard(left, refsStartY, contentWidth, refsH);
+    ry = refsStartY + 32;
+    ry = drawSectionTitle(left + pad, ry, 'Payment References');
+    ry = drawKV(left + pad, ry, 'Razorpay Order ID', razorpayOrderId || '-', { mono: true });
+    ry = drawKV(left + pad, ry, 'Razorpay Payment ID', razorpayPaymentId || '-', { mono: true });
+    cursorY = refsStartY + refsH + 16;
 
-    // Address (optional)
+    // Address card (optional)
     if (address) {
-      y += 10;
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(17, 24, 39);
-      doc.setFontSize(13);
-      doc.text('Service Address', left + 16, y);
-      y += 12;
-      doc.setDrawColor(229, 231, 235);
-      doc.line(left + 16, y, right - 16, y);
-      y += 18;
+      const addrStartY = cursorY;
+      let ay = addrStartY + 32;
+      ay = drawSectionTitle(left + pad, ay, 'Service Address');
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(55, 65, 81);
-      doc.setFontSize(11);
-      doc.text(String(address), left + 16, y + 10, { maxWidth: contentWidth - 32, lineHeightFactor: 1.35 });
+      doc.setFontSize(11.5);
+      const addrLines = wrap(address, contentWidth - pad * 2);
+      doc.text(addrLines, left + pad, ay);
+      ay += addrLines.length * lineH + 10;
+      const addrH = Math.max(110, ay - addrStartY + 10);
+      drawRoundedCard(left, addrStartY, contentWidth, addrH);
+      ay = addrStartY + 32;
+      ay = drawSectionTitle(left + pad, ay, 'Service Address');
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(55, 65, 81);
+      doc.setFontSize(11.5);
+      doc.text(addrLines, left + pad, ay);
+      cursorY = addrStartY + addrH + 16;
     }
 
-    // Trust note card
-    drawRoundedCard(left, 536, contentWidth, 140);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(17, 24, 39);
-    doc.setFontSize(12.5);
-    doc.text('Need help or want to verify this receipt?', left + 16, 566);
+    // Support / verification card
+    const helpStartY = cursorY;
+    let hy = helpStartY + 32;
+    hy = drawSectionTitle(left + pad, hy, 'Support & Verification');
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(55, 65, 81);
-    doc.setFontSize(11);
-    doc.text(
-      [
-        'This receipt confirms a successful membership payment on BelForce.',
-        'Keep your Membership ID safe — it will be required for login and support.',
-        'Support hours: 9:00 AM – 9:00 PM',
-        'WhatsApp: +91 8374348314   |   Email: support@belforce.com',
-      ].join('\n'),
-      left + 16,
-      590,
-      { maxWidth: contentWidth - 32, lineHeightFactor: 1.35 }
-    );
+    doc.setFontSize(11.2);
+    const helpText = [
+      'This receipt confirms a successful membership payment on BelForce.',
+      'Keep your Membership ID safe — it is required for login and support.',
+      'Support hours: 9:00 AM – 9:00 PM',
+      'WhatsApp: +91 8374348314   |   Email: support@belforce.com',
+    ];
+    const helpLines = helpText.flatMap((t) => wrap(t, contentWidth - pad * 2));
+    doc.text(helpLines, left + pad, hy);
+    hy += helpLines.length * lineH + 10;
+    const helpH = Math.max(130, hy - helpStartY + 10);
+    drawRoundedCard(left, helpStartY, contentWidth, helpH);
+    hy = helpStartY + 32;
+    hy = drawSectionTitle(left + pad, hy, 'Support & Verification');
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(55, 65, 81);
+    doc.setFontSize(11.2);
+    doc.text(helpLines, left + pad, hy);
 
     // Footer
     doc.setTextColor(156, 163, 175);
