@@ -4192,14 +4192,14 @@ a {
     position: relative;
   }
   .hero__heading {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    max-width: 100vw;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
     height: auto;
-    min-height: 225px;
+    min-height: 0;
     font-family: Poppins, system-ui, sans-serif;
     font-size: 36px;
     line-height: 45px;
@@ -4214,7 +4214,7 @@ a {
   .hero__mobile-content {
     background: #ffffff;
     margin: 0 -1rem;
-    margin-top: 260px;
+    margin-top: 0.75rem;
     padding: 1.5rem 1rem 2rem;
     border-radius: 20px 20px 0 0;
   }
@@ -4331,15 +4331,16 @@ a {
   }
   .hero__right {
     margin-top: 1rem;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
     padding: 0;
     background: transparent;
     margin: 0;
   }
   .hero__carousel {
     max-width: none;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
+    margin-left: 0;
   }
   .hero__carousel-arrow {
     color: #00000080;
