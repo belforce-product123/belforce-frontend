@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
 import womenImg from '../../assets/images/women.webp';
+import logoPngUrl from '../../assets/logo/logo.png';
 
 const PLAN_CONFIG = {
   pro: { title: 'BelForce Pro', amountInr: 699 },
@@ -65,6 +66,20 @@ function PaymentSuccess() {
     const receiptNo = membershipId;
     const amount = Number(amountPaidInr || 0);
 
+    const toDataUrl = async (url) =>
+      new Promise((resolve, reject) => {
+        fetch(url)
+          .then((r) => (r.ok ? r.blob() : Promise.reject(new Error('Failed to load logo'))))
+          .then((blob) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(new Error('Failed to read logo'));
+            reader.readAsDataURL(blob);
+          })
+          .catch(reject);
+      });
+
+    const generate = async () => {
     const doc = new jsPDF({ unit: 'pt', format: 'a4' });
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
@@ -75,6 +90,16 @@ function PaymentSuccess() {
     const pad = 16;
     const gap = 14;
     const lineH = 14;
+
+    const fonts = {
+      title: 20,
+      subtitle: 11,
+      section: 13.5,
+      label: 9.8,
+      value: 11.5,
+      mono: 10.5,
+      small: 10,
+    };
 
     const drawRoundedCard = (x, y, w, h) => {
       doc.setDrawColor(229, 231, 235);
@@ -87,7 +112,7 @@ function PaymentSuccess() {
     const drawSectionTitle = (x, y, title) => {
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(17, 24, 39);
-      doc.setFontSize(13.5);
+      doc.setFontSize(fonts.section);
       doc.text(title, x, y);
       doc.setDrawColor(229, 231, 235);
       doc.setLineWidth(1);
@@ -103,12 +128,12 @@ function PaymentSuccess() {
 
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(107, 114, 128);
-      doc.setFontSize(10);
+      doc.setFontSize(fonts.label);
       const labelLines = wrap(String(label || '').toUpperCase(), labelW);
 
       doc.setFont(mono ? 'courier' : 'helvetica', 'normal');
       doc.setTextColor(17, 24, 39);
-      doc.setFontSize(mono ? 10.5 : 11.5);
+      doc.setFontSize(mono ? fonts.mono : fonts.value);
       const valueLines = wrap(value || '-', valueW);
 
       const lines = Math.max(labelLines.length, valueLines.length);
@@ -117,13 +142,13 @@ function PaymentSuccess() {
       // Label
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(107, 114, 128);
-      doc.setFontSize(10);
+      doc.setFontSize(fonts.label);
       doc.text(labelLines, x, y);
 
       // Value
       doc.setFont(mono ? 'courier' : 'helvetica', 'normal');
       doc.setTextColor(17, 24, 39);
-      doc.setFontSize(mono ? 10.5 : 11.5);
+      doc.setFontSize(mono ? fonts.mono : fonts.value);
       doc.text(valueLines, valueX, y);
 
       return y + blockH + 10;
@@ -139,13 +164,29 @@ function PaymentSuccess() {
     doc.setFillColor(82, 82, 224);
     doc.rect(0, 56, pageWidth, 20, 'F');
 
+    // Logo + brand
+    let logoDataUrl = null;
+    try {
+      logoDataUrl = await toDataUrl(logoPngUrl);
+    } catch {
+      logoDataUrl = null;
+    }
+
+    const logoSize = 26;
+    const logoY = 22;
+    const brandX = left + (logoDataUrl ? logoSize + 10 : 0);
+    if (logoDataUrl) {
+      // addImage supports PNG/JPEG data URLs
+      doc.addImage(logoDataUrl, 'PNG', left, logoY, logoSize, logoSize);
+    }
+
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(20);
-    doc.text('BELFORCE', left, 36);
+    doc.setFontSize(fonts.title);
+    doc.text('BELFORCE', brandX, 36);
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(11);
-    doc.text('Membership Payment Receipt', left, 56);
+    doc.setFontSize(fonts.subtitle);
+    doc.text('Membership Payment Receipt', brandX, 58);
 
     // Status pill (Paid)
     const pillW = 70;
@@ -155,12 +196,12 @@ function PaymentSuccess() {
     doc.setFillColor(34, 197, 94);
     doc.roundedRect(pillX, pillY, pillW, pillH, 11, 11, 'F');
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
+    doc.setFontSize(fonts.small);
     doc.setTextColor(255, 255, 255);
     doc.text('PAID', pillX + 22, pillY + 15);
 
     // Layout starts
-    let cursorY = 96;
+    let cursorY = 104; // extra gap below header
 
     // Summary card (dynamic height)
     const summaryStartY = cursorY;
@@ -201,7 +242,7 @@ function PaymentSuccess() {
       `${currency === 'INR' ? '₹' : ''}${amount.toLocaleString('en-IN')}${currency !== 'INR' ? ` ${currency}` : ''}`
     );
 
-    cursorY = summaryStartY + summaryH + 16;
+    cursorY = summaryStartY + summaryH + 18;
 
     // Payment refs card
     const refsStartY = cursorY;
@@ -215,7 +256,7 @@ function PaymentSuccess() {
     ry = drawSectionTitle(left + pad, ry, 'Payment References');
     ry = drawKV(left + pad, ry, 'Razorpay Order ID', razorpayOrderId || '-', { mono: true });
     ry = drawKV(left + pad, ry, 'Razorpay Payment ID', razorpayPaymentId || '-', { mono: true });
-    cursorY = refsStartY + refsH + 16;
+    cursorY = refsStartY + refsH + 18;
 
     // Address card (optional)
     if (address) {
@@ -224,7 +265,7 @@ function PaymentSuccess() {
       ay = drawSectionTitle(left + pad, ay, 'Service Address');
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(55, 65, 81);
-      doc.setFontSize(11.5);
+      doc.setFontSize(fonts.value);
       const addrLines = wrap(address, contentWidth - pad * 2);
       doc.text(addrLines, left + pad, ay);
       ay += addrLines.length * lineH + 10;
@@ -236,7 +277,7 @@ function PaymentSuccess() {
       doc.setTextColor(55, 65, 81);
       doc.setFontSize(11.5);
       doc.text(addrLines, left + pad, ay);
-      cursorY = addrStartY + addrH + 16;
+      cursorY = addrStartY + addrH + 18;
     }
 
     // Support / verification card
@@ -245,7 +286,7 @@ function PaymentSuccess() {
     hy = drawSectionTitle(left + pad, hy, 'Support & Verification');
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(55, 65, 81);
-    doc.setFontSize(11.2);
+    doc.setFontSize(fonts.value);
     const helpText = [
       'This receipt confirms a successful membership payment on BelForce.',
       'Keep your Membership ID safe — it is required for login and support.',
@@ -266,11 +307,14 @@ function PaymentSuccess() {
 
     // Footer
     doc.setTextColor(156, 163, 175);
-    doc.setFontSize(10);
+    doc.setFontSize(fonts.small);
     doc.text('© 2026 BelForce. All rights reserved.', left, pageHeight - 28);
 
     const safeId = String(membershipId || 'membership').replace(/[^a-z0-9_-]/gi, '_');
     doc.save(`BelForce_Receipt_${safeId}.pdf`);
+    };
+
+    generate();
   };
 
   return (
