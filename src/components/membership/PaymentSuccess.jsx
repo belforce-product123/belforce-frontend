@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { jsPDF } from 'jspdf';
 import womenImg from '../../assets/images/women.webp';
 
 const PLAN_CONFIG = {
-  pro: { title: 'BelForce Pro' },
-  promax: { title: 'BelForce Pro Max' },
-  dummy_plan: { title: 'Dummy Plan (Test)' },
+  pro: { title: 'BelForce Pro', amountInr: 699 },
+  promax: { title: 'BelForce Pro Max', amountInr: 1599 },
+  dummy_plan: { title: 'Dummy Plan (Test)', amountInr: 1 },
 };
 
 const BENEFITS = [
@@ -30,6 +31,7 @@ function PaymentSuccess() {
   const plan = searchParams.get('plan') || 'pro';
   const config = PLAN_CONFIG[plan] || PLAN_CONFIG.pro;
   const fullName = state?.fullName || 'Member';
+  const email = state?.email || '';
   const membershipId = useMemo(
     () => state?.membershipId || `BF-${Math.floor(100000 + Math.random() * 900000)}`,
     [state?.membershipId]
@@ -46,6 +48,84 @@ function PaymentSuccess() {
 
   const handleCopyId = () => {
     navigator.clipboard?.writeText(membershipId);
+  };
+
+  const handleDownloadReceipt = () => {
+    const issuedAt = new Date();
+    const receiptNo = membershipId;
+    const amount = Number(config.amountInr || 0);
+
+    const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+    const pageWidth = doc.internal.pageSize.getWidth();
+
+    const left = 48;
+    const right = pageWidth - 48;
+
+    // Header
+    doc.setFillColor(17, 24, 39);
+    doc.rect(0, 0, pageWidth, 92, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('BELFORCE', left, 44);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11);
+    doc.text('Payment Receipt', left, 68);
+
+    // Body
+    doc.setTextColor(17, 24, 39);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.text('Receipt Details', left, 130);
+
+    doc.setDrawColor(229, 231, 235);
+    doc.setLineWidth(1);
+    doc.line(left, 142, right, 142);
+
+    const rows = [
+      ['Receipt No', receiptNo],
+      ['Issued At', issuedAt.toLocaleString('en-IN')],
+      ['Customer Name', fullName],
+      ...(email ? [['Email', email]] : []),
+      ['Plan', config.title],
+      ['Amount Paid', `₹${amount.toLocaleString('en-IN')}`],
+      ['Status', 'PAID'],
+    ];
+
+    let y = 172;
+    doc.setFontSize(11);
+    for (const [label, value] of rows) {
+      doc.setFont('helvetica', 'bold');
+      doc.text(`${label}:`, left, y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(String(value), left + 120, y);
+      y += 20;
+    }
+
+    // Notes
+    y += 14;
+    doc.setFont('helvetica', 'bold');
+    doc.text('Notes', left, y);
+    y += 14;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(55, 65, 81);
+    const notes = [
+      'This receipt confirms a successful membership payment.',
+      'Keep your Membership ID safe for future login and support.',
+      'Support hours: 9:00 AM – 9:00 PM',
+      'WhatsApp: +91 8374348314 | Email: support@belforce.com',
+    ].join('\n');
+    doc.text(notes, left, y + 10, { maxWidth: right - left, lineHeightFactor: 1.35 });
+
+    // Footer
+    doc.setTextColor(107, 114, 128);
+    doc.setFontSize(10);
+    doc.text('© 2026 BelForce. All rights reserved.', left, 806);
+
+    const safeId = String(membershipId || 'membership').replace(/[^a-z0-9_-]/gi, '_');
+    doc.save(`BelForce_Receipt_${safeId}.pdf`);
   };
 
   return (
@@ -133,8 +213,17 @@ function PaymentSuccess() {
           </span>
         </p>
         <div className="payment-success__benefits-actions">
-          <button type="button" className="payment-success__btn-download">Download receipt</button>
-          <button type="button" className="payment-success__btn-support">Contact support</button>
+          <button type="button" className="payment-success__btn-download" onClick={handleDownloadReceipt}>
+            Download receipt
+          </button>
+          <a
+            href="https://wa.me/918374348314"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="payment-success__btn-support"
+          >
+            Contact support
+          </a>
         </div>
       </div>
 
@@ -258,7 +347,7 @@ function PaymentSuccess() {
               <p className="payment-success__desktop-note">Please take a screenshot of this page for your records.</p>
 
               <div className="payment-success__desktop-actions">
-                <button type="button" className="payment-success__desktop-btn" onClick={() => {}}>
+                <button type="button" className="payment-success__desktop-btn" onClick={handleDownloadReceipt}>
                   <span className="payment-success__desktop-btn-icon" aria-hidden>⬇</span>
                   Download PDF
                 </button>
@@ -315,8 +404,17 @@ function PaymentSuccess() {
               </div>
 
               <div className="payment-success__desktop-benefits-footer">
-                <button type="button" className="payment-success__desktop-link" onClick={() => {}}>Download membership receipt</button>
-                <button type="button" className="payment-success__desktop-link" onClick={() => {}}>Contact support</button>
+                <button type="button" className="payment-success__desktop-link" onClick={handleDownloadReceipt}>
+                  Download membership receipt
+                </button>
+                <a
+                  href="https://wa.me/918374348314"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="payment-success__desktop-link"
+                >
+                  Contact support
+                </a>
               </div>
             </section>
 
