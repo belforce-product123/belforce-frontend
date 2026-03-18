@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoImg from '../../assets/logo/logo.png';
-import razorpayImg from '../../assets/logo/razorpay.png';
-import shieldImg from '../../assets/logo/2nd.png';
-import certifiedImg from '../../assets/logo/certified.png';
+import logoImg from '../../assets/logo/logo.webp';
+import razorpayImg from '../../assets/logo/razorpay.webp';
+import shieldImg from '../../assets/logo/2nd.webp';
+import certifiedImg from '../../assets/logo/certified.webp';
 
 const PRODUCT_LINKS = [
   { label: 'How It Works', href: '/how-it-works' },
@@ -57,7 +57,7 @@ function Footer() {
         <div className="footer__upper">
           <div className="footer__brand">
             <div className="footer__brand-row">
-              <img src={logoImg} alt="" className="footer__brand-logo" aria-hidden />
+              <img src={logoImg} alt="" className="footer__brand-logo" aria-hidden loading="lazy" decoding="async" />
               <h3 className="footer__brand-name">BelForce</h3>
             </div>
             <p className="footer__tagline">Safer. Faster. Fairer resale.</p>
@@ -122,15 +122,15 @@ function Footer() {
             <span className="footer__trust-label">Trust &amp; Payments:</span>
             <div className="footer__trust-items">
               <div className="footer__trust-item footer__trust-item--razorpay">
-                <img src={razorpayImg} alt="Razorpay" className="footer__badge-icon" />
+                <img src={razorpayImg} alt="Razorpay" className="footer__badge-icon" loading="lazy" decoding="async" />
                 <span className="footer__trust-text">Secure payments (Razorpay)</span>
               </div>
               <div className="footer__trust-item">
-                <img src={shieldImg} alt="Secure" className="footer__badge-icon" />
+                <img src={shieldImg} alt="Secure" className="footer__badge-icon" loading="lazy" decoding="async" />
                 <span className="footer__trust-text">100% Trusted</span>
               </div>
               <div className="footer__trust-item">
-                <img src={certifiedImg} alt="Legal &amp; certified" className="footer__badge-icon" />
+                <img src={certifiedImg} alt="Legal &amp; certified" className="footer__badge-icon" loading="lazy" decoding="async" />
                 <span className="footer__trust-text">Legal &amp; certified</span>
               </div>
             </div>
@@ -180,7 +180,7 @@ function Footer() {
         <div className="footer__mobile">
           <div className="footer__mobile-brand">
             <div className="footer__mobile-brand-row">
-              <img src={logoImg} alt="" className="footer__mobile-logo" aria-hidden />
+              <img src={logoImg} alt="" className="footer__mobile-logo" aria-hidden decoding="async" />
               <h3 className="footer__mobile-brand-name">BelForce</h3>
             </div>
             <p className="footer__mobile-tagline">Resale is now faster, safer and smarter</p>
@@ -287,9 +287,9 @@ function Footer() {
           <div className="footer__mobile-trust">
             <p className="footer__mobile-trust-text">100% Trusted . secure . legal . platform</p>
             <div className="footer__mobile-badges">
-              <img src={razorpayImg} alt="Razorpay" className="footer__mobile-badge-icon" />
-              <img src={shieldImg} alt="Secure" className="footer__mobile-badge-icon" />
-              <img src={certifiedImg} alt="Certified" className="footer__mobile-badge-icon" />
+              <img src={razorpayImg} alt="Razorpay" className="footer__mobile-badge-icon" loading="lazy" decoding="async" />
+              <img src={shieldImg} alt="Secure" className="footer__mobile-badge-icon" loading="lazy" decoding="async" />
+              <img src={certifiedImg} alt="Certified" className="footer__mobile-badge-icon" loading="lazy" decoding="async" />
             </div>
           </div>
 

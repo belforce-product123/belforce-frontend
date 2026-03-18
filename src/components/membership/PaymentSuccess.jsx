@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-import womenImg from '../../assets/images/women.png';
+import womenImg from '../../assets/images/women.webp';
 
 const PLAN_CONFIG = {
   pro: { title: 'BelForce Pro' },
@@ -230,7 +230,7 @@ function PaymentSuccess() {
                 You&apos;re now officially part of the BelForce Membership Community.
               </div>
               <div className="payment-success__desktop-women-wrap">
-                <img src={womenImg} alt="" className="payment-success__desktop-women" />
+                <img src={womenImg} alt="" className="payment-success__desktop-women" loading="lazy" decoding="async" />
               </div>
             </div>
 

@@ -1,9 +1,9 @@
-import lowballOffers from '../../assets/logo/lowball_offers.png';
-import truestIssues from '../../assets/logo/truest_issues.png';
-import timeConsuming from '../../assets/logo/time_consuming.png';
-import dataSecurityRisks from '../../assets/logo/data_security_risks.png';
-import limitedReach from '../../assets/logo/limited_reach.png';
-import complexProcess from '../../assets/logo/complex_proess.png';
+import lowballOffers from '../../assets/logo/lowball_offers.webp';
+import truestIssues from '../../assets/logo/truest_issues.webp';
+import timeConsuming from '../../assets/logo/time_consuming.webp';
+import dataSecurityRisks from '../../assets/logo/data_security_risks.webp';
+import limitedReach from '../../assets/logo/limited_reach.webp';
+import complexProcess from '../../assets/logo/complex_proess.webp';
 
 const CARDS = [
   { id: 'lowball', title: 'Lowball Offers', description: 'Tired of getting less than your electronics are worth?', icon: lowballOffers, highlighted: false },
@@ -44,7 +44,7 @@ function StruggleSection() {
           {CARDS.map((card) => (
             <div key={card.id} className={`struggle__card ${card.highlighted ? 'struggle__card--highlighted' : ''}`}>
               <div className="struggle__card-icon">
-                <img src={card.icon} alt={card.title} />
+                <img src={card.icon} alt={card.title} loading="lazy" decoding="async" />
               </div>
               <h3 className="struggle__card-title">{card.title}</h3>
               <p className="struggle__card-desc">{card.description}</p>

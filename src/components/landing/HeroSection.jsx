@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import IMG1 from '../../assets/images/IMG1.png';
-import IMG2 from '../../assets/images/IMG2.png';
-import IMG3 from '../../assets/images/IMG3.png';
-import ultraFastIcon from '../../assets/icons/ultra_fast.png';
-import securePaymentsIcon from '../../assets/icons/secure_payments.png';
-import simpleProcessIcon from '../../assets/icons/simple_process.png';
+import IMG1 from '../../assets/images/IMG1.webp';
+import IMG2 from '../../assets/images/IMG2.webp';
+import IMG3 from '../../assets/images/IMG3.webp';
+import ultraFastIcon from '../../assets/icons/ultra_fast.webp';
+import securePaymentsIcon from '../../assets/icons/secure_payments.webp';
+import simpleProcessIcon from '../../assets/icons/simple_process.webp';
 
 const CAROUSEL_IMAGES = [IMG1, IMG2, IMG3];
 const CAROUSEL_INTERVAL_MS = 4000;
@@ -51,19 +51,19 @@ function HeroSection() {
           <div className="hero__features">
             <div className="hero__feature">
               <div className="hero__feature-icon">
-                <img src={ultraFastIcon} alt="" className="hero__feature-icon-img" />
+                <img src={ultraFastIcon} alt="" className="hero__feature-icon-img" decoding="async" />
               </div>
               <span>Ultra Fast Sales</span>
             </div>
             <div className="hero__feature">
               <div className="hero__feature-icon">
-                <img src={securePaymentsIcon} alt="" className="hero__feature-icon-img" />
+                <img src={securePaymentsIcon} alt="" className="hero__feature-icon-img" decoding="async" />
               </div>
               <span>Secure Payments</span>
             </div>
             <div className="hero__feature">
               <div className="hero__feature-icon">
-                <img src={simpleProcessIcon} alt="" className="hero__feature-icon-img" />
+                <img src={simpleProcessIcon} alt="" className="hero__feature-icon-img" decoding="async" />
               </div>
               <span>Simple Process</span>
             </div>
@@ -83,6 +83,8 @@ function HeroSection() {
                   src={img}
                   alt={`Slide ${i + 1}`}
                   className={`hero__carousel-img ${i === activeIndex ? 'hero__carousel-img--active' : ''}`}
+                  loading={i === activeIndex ? 'eager' : 'lazy'}
+                  decoding="async"
                 />
               ))}
             </div>
@@ -101,7 +103,7 @@ function HeroSection() {
                 onClick={() => goToSlide(i)}
                 aria-label={`View slide ${i + 1}`}
               >
-                <img src={img} alt={`Thumbnail ${i + 1}`} />
+                <img src={img} alt={`Thumbnail ${i + 1}`} loading="lazy" decoding="async" />
               </button>
             ))}
           </div>

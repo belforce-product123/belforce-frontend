@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import founderImg from '../../assets/images/office_gallery/founders_photo_new.png';
+import founderImg from '../../assets/images/office_gallery/founders_photo_new.webp';
 
 const INTRO_VIDEO_ID = '5Jqme5yqZhE';
 
@@ -54,7 +54,7 @@ function HowItWorksHero() {
                 />
               ) : (
                 <>
-                  <img src={founderImg} alt="Video thumbnail" className="how-it-works-hero__mobile-video-img" />
+                  <img src={founderImg} alt="Video thumbnail" className="how-it-works-hero__mobile-video-img" loading="lazy" decoding="async" />
                   <button
                     type="button"
                     className="how-it-works-hero__mobile-play"

@@ -1,8 +1,8 @@
-import unrivaledSecurity from '../../assets/logo/unrivaled_security.png';
-import speedEfficiency from '../../assets/logo/speed_efficenecy.png';
-import maximumValue from '../../assets/logo/maximum_vlue.png';
-import effortlessExperience from '../../assets/logo/effortless_experience.png';
-import blueTick from '../../assets/logo/blue_tick.png';
+import unrivaledSecurity from '../../assets/logo/unrivaled_security.webp';
+import speedEfficiency from '../../assets/logo/speed_efficenecy.webp';
+import maximumValue from '../../assets/logo/maximum_vlue.webp';
+import effortlessExperience from '../../assets/logo/effortless_experience.webp';
+import blueTick from '../../assets/logo/blue_tick.webp';
 
 const CARDS = [
   { id: 'security', title: 'Unrivaled Security', description: 'Our platform ensures your transactions are safe and your data is protected every step of the way.', icon: unrivaledSecurity, belowSecond: false },
@@ -28,7 +28,7 @@ function WhyBelForceSection() {
           {CARDS.map((card) => (
             <div key={card.id} className={`why-belforce__card ${card.belowSecond ? 'why-belforce__card--below-second' : ''}`}>
               <div className="why-belforce__card-icon">
-                <img src={card.icon} alt={card.title} />
+                <img src={card.icon} alt={card.title} loading="lazy" decoding="async" />
               </div>
               <h3 className="why-belforce__card-title">{card.title}</h3>
               <p className="why-belforce__card-desc">{card.description}</p>
@@ -44,7 +44,7 @@ function WhyBelForceSection() {
           {MOBILE_CARDS.map((card) => (
             <div key={card.id} className="why-belforce__mobile-card">
               <div className="why-belforce__mobile-icon">
-                <img src={blueTick} alt="" aria-hidden />
+                <img src={blueTick} alt="" aria-hidden loading="lazy" decoding="async" />
               </div>
               <div className="why-belforce__mobile-content">
                 <h3 className="why-belforce__mobile-title">{card.title}</h3>

@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import founderImg from '../../assets/images/office_gallery/founders_photo_new.png';
-import supportLogo from '../../assets/logo/support.png';
-import phoneIcon from '../../assets/icons/phone_number.png';
-import emailIcon from '../../assets/icons/email_support.png';
-import off1 from '../../assets/images/office_gallery/off1.png';
-import off2 from '../../assets/images/office_gallery/off2.png';
-import off3 from '../../assets/images/office_gallery/off3.png';
-import off4 from '../../assets/images/office_gallery/off4.png';
+import founderImg from '../../assets/images/office_gallery/founders_photo_new.webp';
+import supportLogo from '../../assets/logo/support.webp';
+import phoneIcon from '../../assets/icons/phone_number.webp';
+import emailIcon from '../../assets/icons/email_support.webp';
+import off1 from '../../assets/images/office_gallery/off1.webp';
+import off2 from '../../assets/images/office_gallery/off2.webp';
+import off3 from '../../assets/images/office_gallery/off3.webp';
+import off4 from '../../assets/images/office_gallery/off4.webp';
 
 const SUPPORT_PHONE = '+918374348314';
 const SUPPORT_EMAIL = 'support@belforce.com';
@@ -28,7 +28,7 @@ function CompanySupport() {
         </button>
         <h1 className="company-support__nav-title">Company & Support</h1>
         <span className="company-support__badge" aria-hidden>
-          <img src={supportLogo} alt="" width="32" height="32" />
+          <img src={supportLogo} alt="" width="32" height="32" decoding="async" />
         </span>
       </nav>
 
@@ -60,14 +60,14 @@ function CompanySupport() {
             </a>
             <a href={`tel:${SUPPORT_PHONE}`} className="company-support__btn">
               <span className="company-support__btn-icon">
-                <img src={phoneIcon} alt="" width="32" height="32" />
+                <img src={phoneIcon} alt="" width="32" height="32" loading="lazy" decoding="async" />
               </span>
               <span className="company-support__btn-title">Call Us</span>
               <span className="company-support__btn-desc">Speak directly with our team</span>
             </a>
             <a href={`mailto:${SUPPORT_EMAIL}`} className="company-support__btn">
               <span className="company-support__btn-icon">
-                <img src={emailIcon} alt="" width="32" height="32" />
+                <img src={emailIcon} alt="" width="32" height="32" loading="lazy" decoding="async" />
               </span>
               <span className="company-support__btn-title">Email Support</span>
               <span className="company-support__btn-desc">For detailed queries</span>
@@ -91,7 +91,7 @@ function CompanySupport() {
             </p>
             <div className="company-support__founder-banner">
               <div className="company-support__founder-banner-inner">
-                <img src={founderImg} alt="J. Vishwa" className="company-support__founder-banner-img" />
+                <img src={founderImg} alt="J. Vishwa" className="company-support__founder-banner-img" loading="lazy" decoding="async" />
                 <div className="company-support__founder-banner-content">
                   <h3 className="company-support__founder-banner-name">J. Vishwa (Jatavath Lambya)</h3>
                   <p className="company-support__founder-banner-role">Founder &amp; Director</p>
@@ -139,7 +139,7 @@ function CompanySupport() {
             <div className="company-support__office-gallery-desktop">
               {officeGallery.map((src, idx) => (
                 <div key={`${idx}-${src}`} className="company-support__office-thumb">
-                  <img src={src} alt={`BelForce office ${idx + 1}`} className="company-support__office-thumb-img" />
+                  <img src={src} alt={`BelForce office ${idx + 1}`} className="company-support__office-thumb-img" loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>
@@ -193,7 +193,7 @@ function CompanySupport() {
           <section className="company-support__section">
             <h2 className="company-support__heading">Founder & Director</h2>
             <div className="company-support__founder-card">
-              <img src={founderImg} alt="J. Vishwa" className="company-support__founder-img" />
+              <img src={founderImg} alt="J. Vishwa" className="company-support__founder-img" loading="lazy" decoding="async" />
               <div className="company-support__founder-info">
                 <h3 className="company-support__founder-name">J. Vishwa (Jatavath Lambya)</h3>
                 <p className="company-support__founder-desc">Building BelForce with a long-term vision to fix trust and safety in resale.</p>
@@ -236,7 +236,7 @@ function CompanySupport() {
             <h2 className="company-support__heading">Our Office</h2>
             <div className="company-support__office-images">
               {officeGallery.map((src, idx) => (
-                <img key={`${idx}-${src}`} src={src} alt={`BelForce office ${idx + 1}`} className="company-support__office-image" />
+                <img key={`${idx}-${src}`} src={src} alt={`BelForce office ${idx + 1}`} className="company-support__office-image" loading="lazy" decoding="async" />
               ))}
             </div>
           </section>

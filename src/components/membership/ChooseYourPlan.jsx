@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
-import chooseYourPlanImg from '../../assets/images/choose_your_plan.png';
+import chooseYourPlanImg from '../../assets/images/choose_your_plan.webp';
 
 const PRO_FEATURES_MOBILE = [
   'Sell upto 10 items',
@@ -305,7 +305,7 @@ function ChooseYourPlan() {
           </div>
           <div className="choose-your-plan__banner-right">
             <div className="choose-your-plan__banner-panel">
-              <img src={chooseYourPlanImg} alt="" className="choose-your-plan__banner-img" />
+              <img src={chooseYourPlanImg} alt="" className="choose-your-plan__banner-img" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>

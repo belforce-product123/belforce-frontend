@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import logoImg from '../../assets/logo/logo.png';
-import faqsBannerImg from '../../assets/images/faqs.png';
+import logoImg from '../../assets/logo/logo.webp';
+import faqsBannerImg from '../../assets/images/faqs.webp';
 
 const FAQ_MEMBERSHIP = [
   {
@@ -115,13 +115,13 @@ function FAQ() {
           ‹
         </button>
         <Link to="/" className="faq__brand">
-          <img src={logoImg} alt="BelForce" className="faq__logo" />
+          <img src={logoImg} alt="BelForce" className="faq__logo" decoding="async" />
           <span className="faq__name">BelForce</span>
         </Link>
       </nav>
 
       <div className="faq__banner">
-        <img src={faqsBannerImg} alt="" className="faq__banner-img" aria-hidden />
+        <img src={faqsBannerImg} alt="" className="faq__banner-img" aria-hidden decoding="async" />
         <div className="faq__banner-overlay" />
         <div className="faq__banner-content">
           <span className="faq__banner-icon" aria-hidden>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import founderImg from '../../assets/images/office_gallery/founders_photo_new.png';
+import founderImg from '../../assets/images/office_gallery/founders_photo_new.webp';
 
 const INTRO_VIDEO_ID = '5Jqme5yqZhE';
 
@@ -15,7 +15,7 @@ function VideoSection() {
             <p className="video-section__subtitle">Why BelForce exists and how we&apos;re fixing resale.</p>
           </div>
           <div className="video-section__founder-chip">
-            <img src={founderImg} alt="J. Vishwa" className="video-section__founder-avatar" />
+            <img src={founderImg} alt="J. Vishwa" className="video-section__founder-avatar" loading="lazy" decoding="async" />
             <div className="video-section__founder-text">
               <div className="video-section__founder-label">FOUNDER&apos;S WORDS</div>
               <div className="video-section__founder-name">J. Vishwa</div>
@@ -35,7 +35,7 @@ function VideoSection() {
               />
             ) : (
               <>
-                <img src={founderImg} alt="Why BelForce exists" className="video-section__thumb" />
+                <img src={founderImg} alt="Why BelForce exists" className="video-section__thumb" decoding="async" />
                 <button
                   type="button"
                   className="video-section__play"

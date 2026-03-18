@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import betterWayImg from '../../assets/images/better_way.png';
-import tickMarkGreen from '../../assets/logo/tick_mark_green.png';
+import betterWayImg from '../../assets/images/better_way.webp';
+import tickMarkGreen from '../../assets/logo/tick_mark_green.webp';
 
 const FEATURES = [
   'Effortless listings and fair, transparent pricing.',
@@ -24,7 +24,7 @@ function BetterWaySection() {
               {FEATURES.map((feature, i) => (
                 <li key={i} className="better-way__item">
                   <span className="better-way__check" aria-hidden>
-                    <img src={tickMarkGreen} alt="" />
+                    <img src={tickMarkGreen} alt="" loading="lazy" decoding="async" />
                   </span>
                   <span>{feature}</span>
                 </li>
@@ -32,7 +32,7 @@ function BetterWaySection() {
             </ul>
           </div>
           <div className="better-way__right">
-            <img src={betterWayImg} alt="Better way diagram" className="better-way__img" />
+            <img src={betterWayImg} alt="Better way diagram" className="better-way__img" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>

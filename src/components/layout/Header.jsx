@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logoImg from '../../assets/logo/logo.png';
+import logoImg from '../../assets/logo/logo.webp';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -45,7 +45,7 @@ function Header() {
   return (
     <header className="header">
       <Link to="/" className="header__brand">
-        <img src={logoImg} alt="BelForce" className="header__logo" />
+        <img src={logoImg} alt="BelForce" className="header__logo" decoding="async" />
         <span className="header__name">BELFORCE</span>
         <span className="header__name header__name--mobile">BelForce</span>
       </Link>

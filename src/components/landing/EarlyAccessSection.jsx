@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import verifiedPlatform from '../../assets/logo/veridied_plaform.png';
-import earlyBird from '../../assets/logo/early_bird.png';
-import blueTick from '../../assets/logo/blue_tick.png';
-import appUnderDev from '../../assets/logo/app_uunder_dev.png';
-import googlePlay from '../../assets/logo/google_play.png';
-import appStore from '../../assets/logo/app_store.png';
+import verifiedPlatform from '../../assets/logo/veridied_plaform.webp';
+import earlyBird from '../../assets/logo/early_bird.webp';
+import blueTick from '../../assets/logo/blue_tick.webp';
+import appUnderDev from '../../assets/logo/app_uunder_dev.webp';
+import googlePlay from '../../assets/logo/google_play.webp';
+import appStore from '../../assets/logo/app_store.webp';
 
 function EarlyAccessSection() {
   return (
@@ -14,7 +14,7 @@ function EarlyAccessSection() {
         <div className="early-access__card">
           <div className="early-access__card-header">
             <h2 className="early-access__heading">App Under Development</h2>
-            <img src={appUnderDev} alt="" aria-hidden className="early-access__card-app-icon" />
+            <img src={appUnderDev} alt="" aria-hidden className="early-access__card-app-icon" loading="lazy" decoding="async" />
           </div>
           <hr className="early-access__card-divider" />
           <p className="early-access__card-launch">Launching Soon</p>
@@ -42,19 +42,19 @@ function EarlyAccessSection() {
         <div className="early-access__badges-row">
           <div className="early-access__badge">
             <span className="early-access__badge-icon" aria-hidden>
-              <img src={blueTick} alt="" />
+              <img src={blueTick} alt="" loading="lazy" decoding="async" />
             </span>
             <span className="early-access__badge-text">Secure Payments</span>
           </div>
           <div className="early-access__badge">
             <span className="early-access__badge-icon" aria-hidden>
-              <img src={verifiedPlatform} alt="" />
+              <img src={verifiedPlatform} alt="" loading="lazy" decoding="async" />
             </span>
             <span className="early-access__badge-text">Verified Process</span>
           </div>
           <div className="early-access__badge">
             <span className="early-access__badge-icon" aria-hidden>
-              <img src={earlyBird} alt="" />
+              <img src={earlyBird} alt="" loading="lazy" decoding="async" />
             </span>
             <span className="early-access__badge-text">100% Trusted</span>
           </div>
@@ -66,7 +66,7 @@ function EarlyAccessSection() {
         <div className="early-access__mobile-card">
           <div className="early-access__mobile-header">
             <h2 className="early-access__mobile-title">App Under Development</h2>
-            <img src={appUnderDev} alt="" aria-hidden className="early-access__app-icon" />
+            <img src={appUnderDev} alt="" aria-hidden className="early-access__app-icon" loading="lazy" decoding="async" />
           </div>
           <hr className="early-access__mobile-divider" />
           <p className="early-access__mobile-launch">Launching Soon</p>
@@ -79,11 +79,11 @@ function EarlyAccessSection() {
           </Link>
           <div className="early-access__mobile-features">
             <div className="early-access__mobile-feature">
-              <img src={blueTick} alt="" aria-hidden className="early-access__mobile-feature-icon early-access__mobile-feature-icon--blue" />
+              <img src={blueTick} alt="" aria-hidden className="early-access__mobile-feature-icon early-access__mobile-feature-icon--blue" loading="lazy" decoding="async" />
               <span>Secure Payments</span>
             </div>
             <div className="early-access__mobile-feature">
-              <img src={verifiedPlatform} alt="" aria-hidden className="early-access__mobile-feature-icon early-access__mobile-feature-icon--green" />
+              <img src={verifiedPlatform} alt="" aria-hidden className="early-access__mobile-feature-icon early-access__mobile-feature-icon--green" loading="lazy" decoding="async" />
               <span>Verified Process</span>
             </div>
           </div>
@@ -93,8 +93,8 @@ function EarlyAccessSection() {
         <div className="early-access__stores-card">
           <p className="early-access__stores-text">App will be available on play store & App store soon</p>
           <div className="early-access__stores-logos">
-            <img src={googlePlay} alt="Google Play" className="early-access__stores-logo" />
-            <img src={appStore} alt="App Store" className="early-access__stores-logo" />
+            <img src={googlePlay} alt="Google Play" className="early-access__stores-logo" loading="lazy" decoding="async" />
+            <img src={appStore} alt="App Store" className="early-access__stores-logo" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>

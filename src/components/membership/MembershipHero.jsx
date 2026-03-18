@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import membershipHeroImg from '../../assets/images/mebership-hero.png';
-import earlyAccessIcon from '../../assets/icons/early_access.png';
-import secureIcon from '../../assets/icons/secure_transactions.png';
-import premiumIcon from '../../assets/icons/premium_bebenfits.png';
+import membershipHeroImg from '../../assets/images/mebership-hero.webp';
+import earlyAccessIcon from '../../assets/icons/early_access.webp';
+import secureIcon from '../../assets/icons/secure_transactions.webp';
+import premiumIcon from '../../assets/icons/premium_bebenfits.webp';
 
 function MembershipHero() {
   return (
@@ -35,20 +35,20 @@ function MembershipHero() {
             </div>
             <div className="membership-hero__right">
               <div className="membership-hero__image-wrap">
-                <img src={membershipHeroImg} alt="" className="membership-hero__img" />
+                <img src={membershipHeroImg} alt="" className="membership-hero__img" decoding="async" />
                 <div className="membership-hero__save-tag">#Save big</div>
               </div>
               <div className="membership-hero__badges">
                 <div className="membership-hero__badge">
-                  <img src={earlyAccessIcon} alt="" className="membership-hero__badge-icon" />
+                  <img src={earlyAccessIcon} alt="" className="membership-hero__badge-icon" decoding="async" />
                   <span>Early Access</span>
                 </div>
                 <div className="membership-hero__badge">
-                  <img src={secureIcon} alt="" className="membership-hero__badge-icon" />
+                  <img src={secureIcon} alt="" className="membership-hero__badge-icon" decoding="async" />
                   <span>Secure Transactions</span>
                 </div>
                 <div className="membership-hero__badge">
-                  <img src={premiumIcon} alt="" className="membership-hero__badge-icon" />
+                  <img src={premiumIcon} alt="" className="membership-hero__badge-icon" decoding="async" />
                   <span>Premium Benefits</span>
                 </div>
               </div>
@@ -67,7 +67,7 @@ function MembershipHero() {
             Electronics is coming..!
           </h1>
           <div className="membership-hero__mobile-image-wrap">
-            <img src={membershipHeroImg} alt="" className="membership-hero__mobile-img" />
+            <img src={membershipHeroImg} alt="" className="membership-hero__mobile-img" decoding="async" />
             <div className="membership-hero__mobile-buttons">
               <Link to="/how-it-works" className="membership-hero__mobile-btn membership-hero__mobile-btn--secondary">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">

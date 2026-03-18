@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import mobileImg from '../../assets/images/mobile.png';
+import mobileImg from '../../assets/images/mobile.webp';
 import HowBelForceWorksSellers from './HowBelForceWorksSellers';
 import HowPrePaidSubscription from './HowPrePaidSubscription';
 
@@ -14,7 +14,7 @@ function HowBelForceWorksMobile() {
         <span className="how-belforce-works-mobile__line3">Used Electronics?</span>
       </h1>
       <div className="how-belforce-works-mobile__phone-wrap">
-        <img src={mobileImg} alt="BelForce app" className="how-belforce-works-mobile__phone-img" />
+        <img src={mobileImg} alt="BelForce app" className="how-belforce-works-mobile__phone-img" loading="lazy" decoding="async" />
       </div>
       <div className="how-belforce-works-mobile__demo-wrap">
         <Link to="/video-hub" className="how-belforce-works-mobile__watch-demo-btn">

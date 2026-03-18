@@ -1,11 +1,11 @@
-import loginIcon from '../../assets/icons/login.png';
-import selectItemIcon from '../../assets/icons/select_item.png';
-import instantIcon from '../../assets/icons/instant.png';
-import confirmPickupIcon from '../../assets/icons/confirm_pickup.png';
-import pickupDepositIcon from '../../assets/icons/pickup_deposit.png';
-import payoutIcon from '../../assets/icons/payout.png';
-import fastPayoutIcon from '../../assets/icons/fast_payout.png';
-import mobileImg from '../../assets/images/mobile.png';
+import loginIcon from '../../assets/icons/login.webp';
+import selectItemIcon from '../../assets/icons/select_item.webp';
+import instantIcon from '../../assets/icons/instant.webp';
+import confirmPickupIcon from '../../assets/icons/confirm_pickup.webp';
+import pickupDepositIcon from '../../assets/icons/pickup_deposit.webp';
+import payoutIcon from '../../assets/icons/payout.webp';
+import fastPayoutIcon from '../../assets/icons/fast_payout.webp';
+import mobileImg from '../../assets/images/mobile.webp';
 
 const STEPS = [
   {
@@ -60,7 +60,7 @@ function SellersHowItWorks() {
               <div key={step.number} className="sellers-how-it-works__step">
                 <div className="sellers-how-it-works__step-number">{step.number}</div>
                 <div className="sellers-how-it-works__step-icon-wrapper">
-                  <img src={step.icon} alt="" className="sellers-how-it-works__step-icon" />
+                  <img src={step.icon} alt="" className="sellers-how-it-works__step-icon" loading="lazy" decoding="async" />
                 </div>
                 <div className="sellers-how-it-works__step-content">
                   <h3 className="sellers-how-it-works__step-title">{step.title}</h3>
@@ -84,11 +84,11 @@ function SellersHowItWorks() {
             </p>
           </div>
           <div className="sellers-how-it-works__mobile-wrapper">
-            <img src={mobileImg} alt="BelForce mobile app" className="sellers-how-it-works__mobile-img" />
+            <img src={mobileImg} alt="BelForce mobile app" className="sellers-how-it-works__mobile-img" loading="lazy" decoding="async" />
           </div>
           <div className="sellers-how-it-works__benefit-card sellers-how-it-works__benefit-card--payout">
             <div className="sellers-how-it-works__payout-icon-wrapper">
-              <img src={fastPayoutIcon} alt="" className="sellers-how-it-works__payout-icon" />
+              <img src={fastPayoutIcon} alt="" className="sellers-how-it-works__payout-icon" loading="lazy" decoding="async" />
             </div>
             <div className="sellers-how-it-works__payout-content">
               <h3 className="sellers-how-it-works__benefit-title">Fast Payouts</h3>

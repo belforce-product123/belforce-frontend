@@ -1,7 +1,7 @@
-import appLaunchIcon from '../../assets/icons/app_launch.png';
-import preOrderIcon from '../../assets/icons/pre_order_now.png';
-import loginIcon from '../../assets/icons/login.png';
-import automaticBenefitsIcon from '../../assets/icons/automatic_benefits.png';
+import appLaunchIcon from '../../assets/icons/app_launch.webp';
+import preOrderIcon from '../../assets/icons/pre_order_now.webp';
+import loginIcon from '../../assets/icons/login.webp';
+import automaticBenefitsIcon from '../../assets/icons/automatic_benefits.webp';
 
 const STEPS = [
   {
@@ -42,7 +42,7 @@ function MembershipHowItWorksWeb() {
           {STEPS.map((step) => (
             <div key={step.number} className="membership-how-web__card">
               <div className="membership-how-web__icon-wrapper">
-                <img src={step.icon} alt="" className="membership-how-web__icon" />
+                <img src={step.icon} alt="" className="membership-how-web__icon" loading="lazy" decoding="async" />
               </div>
               <h3 className="membership-how-web__card-title">
                 Step {step.number}: {step.title}

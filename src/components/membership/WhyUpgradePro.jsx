@@ -1,4 +1,4 @@
-import whyUpgradeImg from '../../assets/images/why_upgrade.png';
+import whyUpgradeImg from '../../assets/images/why_upgrade.webp';
 
 const LEFT_POINTS = [
   'No chasing buyers for replies.',
@@ -49,7 +49,7 @@ function WhyUpgradePro() {
 
           <div className="why-upgrade__hero-right">
             <div className="why-upgrade__image-card">
-              <img src={whyUpgradeImg} alt="" className="why-upgrade__image" />
+              <img src={whyUpgradeImg} alt="" className="why-upgrade__image" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import freePickupImg from '../../assets/images/free_pickup.png';
-import fasterSalesImg from '../../assets/images/faster_sales.png';
-import simpleProcessImg from '../../assets/images/simple_process.png';
+import freePickupImg from '../../assets/images/free_pickup.webp';
+import fasterSalesImg from '../../assets/images/faster_sales.webp';
+import simpleProcessImg from '../../assets/images/simple_process.webp';
 
 const FEATURES = [
   { label: 'Free PICKUP', image: freePickupImg },
@@ -17,7 +17,7 @@ function PrepaidEnjoySection() {
           {FEATURES.map((item) => (
             <div key={item.label} className="prepaid-enjoy__card">
               <div className="prepaid-enjoy__card-img-wrap">
-                <img src={item.image} alt="" className="prepaid-enjoy__card-img" />
+                <img src={item.image} alt="" className="prepaid-enjoy__card-img" loading="lazy" decoding="async" />
               </div>
               <span className="prepaid-enjoy__card-label">{item.label}</span>
             </div>

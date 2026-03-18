@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import seamlessSellingImg from '../../assets/images/seamless_sellling.png';
-import verifiedPurchasesImg from '../../assets/images/verified_purchases.png';
-import connectingOurImg from '../../assets/images/connecting_our.png';
-import sustainableTechImg from '../../assets/images/sustainable_tech_choice.png';
+import seamlessSellingImg from '../../assets/images/seamless_sellling.webp';
+import verifiedPurchasesImg from '../../assets/images/verified_purchases.webp';
+import connectingOurImg from '../../assets/images/connecting_our.webp';
+import sustainableTechImg from '../../assets/images/sustainable_tech_choice.webp';
 
 const ITEMS = [
   {
@@ -35,7 +35,7 @@ function WhyPeopleChoose() {
         {ITEMS.map((item) => (
           <div key={item.id} className="why-people-choose__item">
             <div className="why-people-choose__thumb">
-              <img src={item.image} alt="" className="why-people-choose__img" />
+              <img src={item.image} alt="" className="why-people-choose__img" loading="lazy" decoding="async" />
             </div>
             <div className="why-people-choose__caption">{item.title}</div>
           </div>

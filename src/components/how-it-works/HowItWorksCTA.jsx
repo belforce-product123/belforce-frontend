@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import razorpayImg from '../../assets/logo/razorpay.png';
-import safeIcon from '../../assets/icons/100_safe.png';
+import razorpayImg from '../../assets/logo/razorpay.webp';
+import safeIcon from '../../assets/icons/100_safe.webp';
 
 const DEMO_VIDEO_ID = '602kFFq622A';
 const DEMO_THUMB = `https://img.youtube.com/vi/${DEMO_VIDEO_ID}/hqdefault.jpg`;
@@ -62,7 +62,7 @@ function HowItWorksCTA() {
 
       <div className="how-it-works-cta__trust-row">
         <div className="how-it-works-cta__trust-item how-it-works-cta__trust-item--safe">
-          <img src={safeIcon} alt="" className="how-it-works-cta__trust-safe-icon" />
+          <img src={safeIcon} alt="" className="how-it-works-cta__trust-safe-icon" loading="lazy" decoding="async" />
           <div className="how-it-works-cta__trust-safe-text">
             <div className="how-it-works-cta__trust-label">100% Safe</div>
             <div className="how-it-works-cta__trust-sub">Verified trades</div>
@@ -76,7 +76,7 @@ function HowItWorksCTA() {
           <div className="how-it-works-cta__trust-author">— SARAH K., EARLY USER</div>
         </div>
         <div className="how-it-works-cta__trust-item how-it-works-cta__trust-item--razorpay">
-          <img src={razorpayImg} alt="Razorpay" className="how-it-works-cta__razorpay-logo" />
+          <img src={razorpayImg} alt="Razorpay" className="how-it-works-cta__razorpay-logo" loading="lazy" decoding="async" />
           <div className="how-it-works-cta__trust-sub">Trusted</div>
         </div>
       </div>
