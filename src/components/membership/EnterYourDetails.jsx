@@ -219,7 +219,18 @@ function EnterYourDetails() {
             });
 
             navigate(`/membership-plans/payment-success?plan=${plan}`, {
-              state: { fullName: form.fullName || 'Member', membershipId: result.membershipId },
+              state: {
+                fullName: form.fullName || 'Member',
+                membershipId: result.membershipId,
+                email: form.email,
+                phone: `${form.countryCode}${normalizePhoneDigits(form.phone)}`,
+                address: form.address,
+                useType: form.useType,
+                amountInr: Number(order.amount) / 100,
+                currency: order.currency,
+                razorpayOrderId: response?.razorpay_order_id || order.orderId,
+                razorpayPaymentId: response?.razorpay_payment_id,
+              },
             });
           } catch (err) {
             setSubmitError(err?.message || 'Payment verification failed. Please contact support.');

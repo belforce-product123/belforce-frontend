@@ -32,6 +32,16 @@ function PaymentSuccess() {
   const config = PLAN_CONFIG[plan] || PLAN_CONFIG.pro;
   const fullName = state?.fullName || 'Member';
   const email = state?.email || '';
+  const phone = state?.phone || '';
+  const address = state?.address || '';
+  const useType = state?.useType || '';
+  const razorpayOrderId = state?.razorpayOrderId || '';
+  const razorpayPaymentId = state?.razorpayPaymentId || '';
+  const currency = state?.currency || 'INR';
+  const amountPaidInr =
+    typeof state?.amountInr === 'number' && Number.isFinite(state.amountInr)
+      ? state.amountInr
+      : Number(config.amountInr || 0);
   const membershipId = useMemo(
     () => state?.membershipId || `BF-${Math.floor(100000 + Math.random() * 900000)}`,
     [state?.membershipId]
@@ -53,76 +63,141 @@ function PaymentSuccess() {
   const handleDownloadReceipt = () => {
     const issuedAt = new Date();
     const receiptNo = membershipId;
-    const amount = Number(config.amountInr || 0);
+    const amount = Number(amountPaidInr || 0);
 
     const doc = new jsPDF({ unit: 'pt', format: 'a4' });
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
     const left = 48;
     const right = pageWidth - 48;
+    const contentWidth = right - left;
+
+    const drawRoundedCard = (x, y, w, h) => {
+      doc.setDrawColor(229, 231, 235);
+      doc.setFillColor(255, 255, 255);
+      doc.roundedRect(x, y, w, h, 14, 14, 'FD');
+    };
+
+    const labelValueRow = (y, label, value) => {
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(107, 114, 128);
+      doc.setFontSize(10.5);
+      doc.text(label.toUpperCase(), left + 16, y);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(17, 24, 39);
+      doc.setFontSize(12);
+      doc.text(String(value || '-'), left + 170, y);
+    };
 
     // Header
-    doc.setFillColor(17, 24, 39);
-    doc.rect(0, 0, pageWidth, 92, 'F');
+    doc.setFillColor(243, 244, 246);
+    doc.rect(0, 0, pageWidth, pageHeight, 'F');
+
+    // Branded top bar (blue -> purple blocks for "gradient feel")
+    doc.setFillColor(82, 153, 224);
+    doc.rect(0, 0, pageWidth, 76, 'F');
+    doc.setFillColor(82, 82, 224);
+    doc.rect(0, 56, pageWidth, 20, 'F');
 
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(20);
-    doc.text('BELFORCE', left, 44);
-
+    doc.text('BELFORCE', left, 36);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(11);
-    doc.text('Payment Receipt', left, 68);
+    doc.text('Membership Payment Receipt', left, 56);
 
-    // Body
+    // Status pill (Paid)
+    const pillW = 70;
+    const pillH = 22;
+    const pillX = right - pillW;
+    const pillY = 26;
+    doc.setFillColor(34, 197, 94);
+    doc.roundedRect(pillX, pillY, pillW, pillH, 11, 11, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(255, 255, 255);
+    doc.text('PAID', pillX + 22, pillY + 15);
+
+    // Main card
+    drawRoundedCard(left, 96, contentWidth, 420);
+
     doc.setTextColor(17, 24, 39);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
-    doc.text('Receipt Details', left, 130);
+    doc.text('Receipt Summary', left + 16, 128);
 
     doc.setDrawColor(229, 231, 235);
-    doc.setLineWidth(1);
-    doc.line(left, 142, right, 142);
+    doc.line(left + 16, 140, right - 16, 140);
 
-    const rows = [
-      ['Receipt No', receiptNo],
-      ['Issued At', issuedAt.toLocaleString('en-IN')],
-      ['Customer Name', fullName],
-      ...(email ? [['Email', email]] : []),
-      ['Plan', config.title],
-      ['Amount Paid', `₹${amount.toLocaleString('en-IN')}`],
-      ['Status', 'PAID'],
-    ];
+    let y = 168;
+    labelValueRow(y, 'Receipt No', receiptNo); y += 24;
+    labelValueRow(y, 'Issued At', issuedAt.toLocaleString('en-IN')); y += 24;
+    labelValueRow(y, 'Customer Name', fullName); y += 24;
+    if (email) { labelValueRow(y, 'Email', email); y += 24; }
+    if (phone) { labelValueRow(y, 'Phone', phone); y += 24; }
+    if (useType) { labelValueRow(y, 'Use Type', useType); y += 24; }
+    labelValueRow(y, 'Plan', config.title); y += 24;
+    labelValueRow(y, 'Amount Paid', `${currency === 'INR' ? '₹' : ''}${amount.toLocaleString('en-IN')}${currency !== 'INR' ? ` ${currency}` : ''}`); y += 24;
 
-    let y = 172;
-    doc.setFontSize(11);
-    for (const [label, value] of rows) {
+    // Payment references section
+    y += 8;
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(17, 24, 39);
+    doc.setFontSize(13);
+    doc.text('Payment References', left + 16, y);
+    y += 12;
+    doc.setDrawColor(229, 231, 235);
+    doc.line(left + 16, y, right - 16, y);
+    y += 26;
+
+    labelValueRow(y, 'Razorpay Order ID', razorpayOrderId || '-'); y += 24;
+    labelValueRow(y, 'Razorpay Payment ID', razorpayPaymentId || '-'); y += 24;
+
+    // Address (optional)
+    if (address) {
+      y += 10;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, left, y);
+      doc.setTextColor(17, 24, 39);
+      doc.setFontSize(13);
+      doc.text('Service Address', left + 16, y);
+      y += 12;
+      doc.setDrawColor(229, 231, 235);
+      doc.line(left + 16, y, right - 16, y);
+      y += 18;
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), left + 120, y);
-      y += 20;
+      doc.setTextColor(55, 65, 81);
+      doc.setFontSize(11);
+      doc.text(String(address), left + 16, y + 10, { maxWidth: contentWidth - 32, lineHeightFactor: 1.35 });
     }
 
-    // Notes
-    y += 14;
+    // Trust note card
+    drawRoundedCard(left, 536, contentWidth, 140);
     doc.setFont('helvetica', 'bold');
-    doc.text('Notes', left, y);
-    y += 14;
+    doc.setTextColor(17, 24, 39);
+    doc.setFontSize(12.5);
+    doc.text('Need help or want to verify this receipt?', left + 16, 566);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(55, 65, 81);
-    const notes = [
-      'This receipt confirms a successful membership payment.',
-      'Keep your Membership ID safe for future login and support.',
-      'Support hours: 9:00 AM – 9:00 PM',
-      'WhatsApp: +91 8374348314 | Email: support@belforce.com',
-    ].join('\n');
-    doc.text(notes, left, y + 10, { maxWidth: right - left, lineHeightFactor: 1.35 });
+    doc.setFontSize(11);
+    doc.text(
+      [
+        'This receipt confirms a successful membership payment on BelForce.',
+        'Keep your Membership ID safe — it will be required for login and support.',
+        'Support hours: 9:00 AM – 9:00 PM',
+        'WhatsApp: +91 8374348314   |   Email: support@belforce.com',
+      ].join('\n'),
+      left + 16,
+      590,
+      { maxWidth: contentWidth - 32, lineHeightFactor: 1.35 }
+    );
 
     // Footer
-    doc.setTextColor(107, 114, 128);
+    doc.setTextColor(156, 163, 175);
     doc.setFontSize(10);
-    doc.text('© 2026 BelForce. All rights reserved.', left, 806);
+    doc.text('© 2026 BelForce. All rights reserved.', left, pageHeight - 28);
 
     const safeId = String(membershipId || 'membership').replace(/[^a-z0-9_-]/gi, '_');
     doc.save(`BelForce_Receipt_${safeId}.pdf`);

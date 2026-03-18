@@ -119,6 +119,12 @@ function SecurePayment() {
           state: {
             fullName: state?.fullName || order.name || 'Member',
             membershipId: state?.membershipId || order.membershipId,
+            email: order.email,
+            phone: order.contact,
+            amountInr: Number(order.amount) / 100,
+            currency: order.currency,
+            razorpayOrderId: response?.razorpay_order_id || order.orderId,
+            razorpayPaymentId: response?.razorpay_payment_id,
           },
         });
       },
