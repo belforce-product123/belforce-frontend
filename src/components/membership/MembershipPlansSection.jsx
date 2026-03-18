@@ -83,6 +83,29 @@ function MembershipPlansSection() {
           <p className="membership-plans__price">₹1599</p>
           <Link to="/membership-plans/choose-plan?plan=promax" className="membership-plans__btn membership-plans__btn--promax">Choose Pro Max</Link>
         </div>
+
+        <div className="membership-plans__card">
+          <span className="membership-plans__badge">
+            Test • ₹1
+          </span>
+          <h3 className="membership-plans__plan-title">Dummy Plan</h3>
+          <p className="membership-plans__plan-desc">For testing the entire payment flow end-to-end</p>
+          <ul className="membership-plans__benefits">
+            {['Razorpay checkout', 'Backend verify + success redirect', 'Receipt email (if SMTP configured)'].map((benefit, i) => (
+              <li key={i} className="membership-plans__benefit">
+                <span className="membership-plans__benefit-icon membership-plans__benefit-icon--check">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M8 12l3 3 5-6" />
+                  </svg>
+                </span>
+                <span className="membership-plans__benefit-text">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="membership-plans__price">₹1</p>
+          <Link to="/membership-plans/choose-plan?plan=dummy_plan" className="membership-plans__btn">Choose Dummy Plan</Link>
+        </div>
       </div>
     </section>
   );

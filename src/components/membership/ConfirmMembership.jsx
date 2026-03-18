@@ -24,6 +24,15 @@ const PLAN_CONFIG = {
       '1 year or 20 Sellings validity',
     ],
   },
+  dummy_plan: {
+    title: 'Dummy Plan (Test)',
+    price: '₹1',
+    benefits: [
+      'Test-only plan for verifying the full payment flow',
+      'Same checkout + verification + success screen',
+      'Receipt email (if SMTP is configured)',
+    ],
+  },
 };
 
 function ConfirmMembership({ plan = 'pro' }) {

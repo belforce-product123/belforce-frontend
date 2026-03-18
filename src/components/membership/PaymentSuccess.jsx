@@ -5,6 +5,7 @@ import womenImg from '../../assets/images/women.webp';
 const PLAN_CONFIG = {
   pro: { title: 'BelForce Pro' },
   promax: { title: 'BelForce Pro Max' },
+  dummy_plan: { title: 'Dummy Plan (Test)' },
 };
 
 const BENEFITS = [

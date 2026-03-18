@@ -68,6 +68,30 @@ function PrePaidMembershipPlans() {
               Choose Pro Max
             </Link>
           </div>
+
+          <div className="prepaid-membership-plans__card">
+            <div className="prepaid-membership-plans__badge">Test Plan</div>
+            <h3 className="prepaid-membership-plans__card-title">Dummy Plan</h3>
+            <p className="prepaid-membership-plans__card-subtitle">Use this to test the complete payment flow.</p>
+            <ul className="prepaid-membership-plans__features">
+              {['Razorpay checkout', 'Verification + redirect', 'Receipt email (if SMTP configured)'].map((feature, index) => (
+                <li key={index} className="prepaid-membership-plans__feature">
+                  <svg className="prepaid-membership-plans__check-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="prepaid-membership-plans__card-cta">Testing only.</p>
+            <div className="prepaid-membership-plans__price">
+              <span className="prepaid-membership-plans__currency">₹</span>
+              <span className="prepaid-membership-plans__amount">1</span>
+            </div>
+            <Link to="/membership-plans/choose-plan?plan=dummy_plan" className="prepaid-membership-plans__btn">
+              Choose Dummy Plan
+            </Link>
+          </div>
         </div>
         <div className="prepaid-membership-plans__bottom-cta">
           <p className="prepaid-membership-plans__bottom-text">Check out Subscription details and benefits in selling used items</p>

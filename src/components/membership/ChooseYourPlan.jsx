@@ -58,13 +58,15 @@ const PRO_MAX_FEATURES = [
 
 function ChooseYourPlan() {
   const [searchParams] = useSearchParams();
-  const plan = searchParams.get('plan') === 'pro' ? 'pro' : 'promax';
+  const planRaw = searchParams.get('plan');
+  const plan = planRaw === 'pro' || planRaw === 'promax' || planRaw === 'dummy_plan' ? planRaw : 'promax';
 
+  const isDummy = plan === 'dummy_plan';
   const isPro = plan === 'pro';
-  const selectedName = isPro ? 'BelForce Pro' : 'BelForce Pro Max';
-  const selectedTagline = isPro ? 'For occasional sellers' : 'For Frequent resellers';
-  const selectedPriceAmount = isPro ? '₹699' : '₹1599';
-  const selectedPriceNote = isPro ? '/lifetime' : '/2 years or 20 listings';
+  const selectedName = isDummy ? 'Dummy Plan (Test)' : isPro ? 'BelForce Pro' : 'BelForce Pro Max';
+  const selectedTagline = isDummy ? 'Test payments' : isPro ? 'For occasional sellers' : 'For Frequent resellers';
+  const selectedPriceAmount = isDummy ? '₹1' : isPro ? '₹699' : '₹1599';
+  const selectedPriceNote = isDummy ? '/test' : isPro ? '/lifetime' : '/2 years or 20 listings';
 
   return (
     <div className="choose-your-plan">

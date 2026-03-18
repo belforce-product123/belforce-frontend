@@ -11,7 +11,8 @@ const USE_OPTIONS = [
 
 function EnterYourDetails() {
   const [searchParams] = useSearchParams();
-  const plan = searchParams.get('plan') || 'pro';
+  const planRaw = searchParams.get('plan');
+  const plan = planRaw === 'pro' || planRaw === 'promax' || planRaw === 'dummy_plan' ? planRaw : 'pro';
   const choosePlanHref = `/membership-plans/choose-plan?plan=${plan}`;
 
   const [form, setForm] = useState({
@@ -29,6 +30,14 @@ function EnterYourDetails() {
   const navigate = useNavigate();
 
   const planSummary = useMemo(() => {
+    if (plan === 'dummy_plan') {
+      return {
+        badge: 'Test',
+        name: 'Dummy Plan (Test)',
+        price: '1 / test',
+        bullets: ['Use this to verify payment + redirect + email end-to-end.'],
+      };
+    }
     if (plan === 'pro') {
       return {
         badge: null,
@@ -170,7 +179,11 @@ function EnterYourDetails() {
   };
 
   const existingPlanLabel =
-    existingMembership?.plan === 'promax' ? 'BelForce Pro Max Plan' : 'BelForce Pro Plan';
+    existingMembership?.plan === 'dummy_plan'
+      ? 'Dummy Plan (Test)'
+      : existingMembership?.plan === 'promax'
+        ? 'BelForce Pro Max Plan'
+        : 'BelForce Pro Plan';
 
   return (
     <div className="enter-details">
