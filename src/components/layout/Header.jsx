@@ -63,7 +63,7 @@ function Header() {
       </nav>
 
       <Link
-        to="/membership-plans"
+        to="/membership-plans/choose-plan?plan=promax"
         className="header__btn-early-access"
         aria-label="Pre-Order Subscription Now"
       >
@@ -126,7 +126,7 @@ function Header() {
               ))}
             </nav>
             <Link
-              to="/membership-plans"
+              to="/membership-plans/choose-plan?plan=promax"
               className="header__mobile-cta"
               aria-label="Pre-Order Subscription Now"
               onClick={() => setMenuOpen(false)}

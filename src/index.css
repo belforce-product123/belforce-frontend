@@ -3067,11 +3067,21 @@ a {
     line-height: 1.5;
   }
   .choose-your-plan__mobile-payment {
-    margin-top: 2rem;
-    padding: 1.25rem;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    margin-top: 0;
+    padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid #e5e7eb;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 0;
   }
   .choose-your-plan__mobile-payment-row {
     display: flex;
@@ -3110,7 +3120,7 @@ a {
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    padding: 1rem 1.25rem;
+    padding: 0.95rem 1.25rem;
     font-family: Poppins, system-ui, sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -3118,7 +3128,7 @@ a {
     background: #2563eb;
     border-radius: 12px;
     text-decoration: none;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   .choose-your-plan__mobile-payment-footer {
     display: flex;
@@ -3152,6 +3162,11 @@ a {
   .choose-your-plan__inner {
     max-width: 100%;
     padding: 1rem;
+  }
+
+  /* Ensure content isn't hidden behind the fixed payment bar */
+  .choose-your-plan__mobile-section {
+    padding-bottom: 230px;
   }
   .choose-your-plan__cards {
     flex-direction: column;
