@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import betterWayImg from '../../assets/images/better_way.webp';
+import betterWayMobileImg from '../../assets/images/bettter_way_mobile.webp';
 import tickMarkGreen from '../../assets/logo/tick_mark_green.webp';
 
 const FEATURES = [
@@ -44,7 +45,14 @@ function BetterWaySection() {
           <p className="better-way__card-paragraph">
             Try BelForce — a faster, safer, and simpler resale experience.
           </p>
-          <Link to="/membership-plans" className="better-way__card-btn">
+          <img
+            src={betterWayMobileImg}
+            alt=""
+            className="better-way__card-img"
+            loading="lazy"
+            decoding="async"
+          />
+          <Link to="/membership-plans/choose-plan?plan=promax" className="better-way__card-btn">
             Get Early Access Membership
           </Link>
         </div>

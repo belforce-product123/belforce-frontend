@@ -6937,6 +6937,14 @@ a {
     color: #374151;
     margin: 0 0 1.5rem;
   }
+  .better-way__card-img {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    margin: 0 auto 1.25rem;
+    object-fit: contain;
+  }
   .better-way__card-btn {
     display: inline-flex;
     align-items: center;

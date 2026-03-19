@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import H1 from '../../assets/images/h1.png';
-import H2 from '../../assets/images/h2.png';
+import H1 from '../../assets/images/h1.webp';
+import H2 from '../../assets/images/h2.webp';
 import IMG3 from '../../assets/images/IMG3.webp';
 import ultraFastIcon from '../../assets/icons/ultra_fast.webp';
 import securePaymentsIcon from '../../assets/icons/secure_payments.webp';
