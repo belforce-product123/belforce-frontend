@@ -24,6 +24,7 @@ function EnterYourDetails() {
     useType: 'seller',
   });
   const [saving, setSaving] = useState(false);
+  const [verifyingPayment, setVerifyingPayment] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [fieldErrors, setFieldErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -202,6 +203,7 @@ function EnterYourDetails() {
           plan: order.plan,
         },
         handler: async (response) => {
+          setVerifyingPayment(true);
           try {
             await apiFetch('/payments/razorpay/verify', {
               method: 'POST',
@@ -227,6 +229,8 @@ function EnterYourDetails() {
             });
           } catch (err) {
             setSubmitError(err?.message || 'Payment verification failed. Please contact support.');
+          } finally {
+            setVerifyingPayment(false);
           }
         },
         modal: {
@@ -256,6 +260,15 @@ function EnterYourDetails() {
 
   return (
     <div className="enter-details">
+      {verifyingPayment && (
+        <div className="bf-loading-overlay" role="status" aria-live="polite" aria-label="Verifying payment">
+          <div className="bf-loading-card">
+            <div className="bf-spinner" aria-hidden />
+            <div className="bf-loading-title">Processing payment…</div>
+            <div className="bf-loading-subtitle">Please don’t close or refresh this page.</div>
+          </div>
+        </div>
+      )}
       {existingMembership ? (
         <div
           className="enter-details__modal"

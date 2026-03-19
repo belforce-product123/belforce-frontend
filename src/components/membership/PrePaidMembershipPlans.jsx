@@ -97,7 +97,7 @@ function PrePaidMembershipPlans() {
         </div>
         <div className="prepaid-membership-plans__bottom-cta">
           <p className="prepaid-membership-plans__bottom-text">Check out Subscription details and benefits in selling used items</p>
-          <Link to="/membership-plans#plans" className="prepaid-membership-plans__bottom-btn">
+          <Link to="/membership-plans/choose-plan?plan=promax" className="prepaid-membership-plans__bottom-btn">
             Subsription details & benifits
           </Link>
         </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import { apiFetch } from '../../utils/apiClient';
 import { env } from '../../utils/env';
@@ -72,66 +73,95 @@ function SecurePayment() {
   const plan = searchParams.get('plan') || 'pro';
   const config = PLAN_CONFIG[plan] || PLAN_CONFIG.pro;
   const enterDetailsHref = `/membership-plans/enter-details?plan=${plan}`;
+  const [verifyingPayment, setVerifyingPayment] = useState(false);
+  const [paymentError, setPaymentError] = useState('');
 
   const handlePay = async () => {
+    if (verifyingPayment) return;
+    setPaymentError('');
     if (!state?.registrationId) {
       navigate(enterDetailsHref);
       return;
     }
 
-    const order = await apiFetch('/payments/razorpay/order', {
-      method: 'POST',
-      body: JSON.stringify({ registrationId: state.registrationId }),
-    });
+    try {
+      const order = await apiFetch('/payments/razorpay/order', {
+        method: 'POST',
+        body: JSON.stringify({ registrationId: state.registrationId }),
+      });
 
-    const ok = await loadRazorpayCheckout();
-    if (!ok) throw new Error('Failed to load Razorpay. Please try again.');
+      const ok = await loadRazorpayCheckout();
+      if (!ok) throw new Error('Failed to load Razorpay. Please try again.');
 
-    const key = env.razorpayKeyId || order.keyId;
-    if (!key) throw new Error('Missing Razorpay Key ID (set VITE_RAZORPAY_KEY_ID)');
+      const key = env.razorpayKeyId || order.keyId;
+      if (!key) throw new Error('Missing Razorpay Key ID (set VITE_RAZORPAY_KEY_ID)');
 
-    const rz = new window.Razorpay({
-      key,
-      amount: order.amount,
-      currency: order.currency,
-      name: 'BelForce',
-      description: `Membership payment (${plan})`,
-      order_id: order.orderId,
-      prefill: {
-        name: state?.fullName || order.name,
-        email: order.email,
-        contact: order.contact,
-      },
-      handler: async (response) => {
-        await apiFetch('/payments/razorpay/verify', {
-          method: 'POST',
-          body: JSON.stringify({
-            registrationId: state.registrationId,
-            ...response,
-          }),
-        });
+      const rz = new window.Razorpay({
+        key,
+        amount: order.amount,
+        currency: order.currency,
+        name: 'BelForce',
+        description: `Membership payment (${plan})`,
+        order_id: order.orderId,
+        prefill: {
+          name: state?.fullName || order.name,
+          email: order.email,
+          contact: order.contact,
+        },
+        handler: async (response) => {
+          setVerifyingPayment(true);
+          try {
+            await apiFetch('/payments/razorpay/verify', {
+              method: 'POST',
+              body: JSON.stringify({
+                registrationId: state.registrationId,
+                ...response,
+              }),
+            });
 
-        navigate(`/membership-plans/payment-success?plan=${plan}`, {
-          state: {
-            fullName: state?.fullName || order.name || 'Member',
-            membershipId: state?.membershipId || order.membershipId,
-            email: order.email,
-            phone: order.contact,
-            amountInr: Number(order.amount) / 100,
-            currency: order.currency,
-            razorpayOrderId: response?.razorpay_order_id || order.orderId,
-            razorpayPaymentId: response?.razorpay_payment_id,
+            navigate(`/membership-plans/payment-success?plan=${plan}`, {
+              state: {
+                fullName: state?.fullName || order.name || 'Member',
+                membershipId: state?.membershipId || order.membershipId,
+                email: order.email,
+                phone: order.contact,
+                amountInr: Number(order.amount) / 100,
+                currency: order.currency,
+                razorpayOrderId: response?.razorpay_order_id || order.orderId,
+                razorpayPaymentId: response?.razorpay_payment_id,
+              },
+            });
+          } catch (err) {
+            setPaymentError(err?.message || 'Payment verification failed. Please try again.');
+          } finally {
+            setVerifyingPayment(false);
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setPaymentError('Payment cancelled. You can try again.');
           },
-        });
-      },
-      theme: { color: '#111827' },
-    });
+        },
+        theme: { color: '#111827' },
+      });
 
-    rz.open();
+      rz.open();
+    } catch (err) {
+      setPaymentError(err?.message || 'Failed to start payment. Please try again.');
+    }
   };
 
   return (
     <div className="secure-payment">
+      {verifyingPayment && (
+        <div className="bf-loading-overlay" role="status" aria-live="polite" aria-label="Verifying payment">
+          <div className="bf-loading-card">
+            <div className="bf-spinner" aria-hidden />
+            <div className="bf-loading-title">Processing payment…</div>
+            <div className="bf-loading-subtitle">Please don’t close or refresh this page.</div>
+          </div>
+        </div>
+      )}
       <nav className="secure-payment__nav">
         <Link to={enterDetailsHref} className="secure-payment__back" aria-label="Go back">
           ‹
@@ -194,8 +224,9 @@ function SecurePayment() {
         </p>
         <p className="secure-payment__safe">Your data is encrypted and safe</p>
 
-        <button type="button" className="secure-payment__pay-btn" onClick={handlePay}>
-          Pay {config.displayAmount} Securely
+        {paymentError ? <div className="secure-payment__error">{paymentError}</div> : null}
+        <button type="button" className="secure-payment__pay-btn" onClick={handlePay} disabled={verifyingPayment}>
+          {verifyingPayment ? 'Processing…' : `Pay ${config.displayAmount} Securely`}
         </button>
       </div>
 

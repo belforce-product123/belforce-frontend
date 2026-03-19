@@ -6164,6 +6164,67 @@ a {
     background: #2a96e8;
     color: #fff;
   }
+.secure-payment__error {
+  width: 100%;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #7f1d1d;
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  margin: 0 0 0.75rem;
+  text-align: left;
+}
+
+.bf-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(17, 24, 39, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+.bf-loading-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem 1.1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.bf-spinner {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 0.85rem;
+  border-radius: 999px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #38a9fa;
+  animation: bf-spin 0.9s linear infinite;
+}
+.bf-loading-title {
+  font-family: Poppins, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #111827;
+  margin: 0 0 0.25rem;
+}
+.bf-loading-subtitle {
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0;
+}
+@keyframes bf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
   .secure-payment__copyright {
     font-family: "Open Sans", Poppins, system-ui, sans-serif;
     font-size: 0.8rem;
