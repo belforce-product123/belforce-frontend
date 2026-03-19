@@ -6240,6 +6240,15 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.bf-btn-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #fff;
+  animation: bf-spin 0.9s linear infinite;
+}
   .secure-payment__copyright {
     font-family: "Open Sans", Poppins, system-ui, sans-serif;
     font-size: 0.8rem;

@@ -468,7 +468,7 @@ function EnterYourDetails() {
 
         <div className="enter-details__actions">
           <button type="button" className="enter-details__submit" onClick={handleContinueToPay} disabled={saving}>
-            {saving ? 'Saving...' : 'Continue to Pay'}
+            {saving ? <span className="bf-btn-spinner" aria-hidden /> : 'Continue to Pay'}
           </button>
           <span className="enter-details__save">Save for later</span>
         </div>
