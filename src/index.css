@@ -6031,54 +6031,9 @@ a {
     line-height: 1.45;
     text-align: left;
   }
+  /* Hide category grid above cost comparison on mobile only; desktop rules in min-width:769px */
   .membership-categories {
-    display: block;
-    padding: 2rem 1rem 3rem;
-    background: #fff;
-  }
-  .membership-categories__heading {
-    font-family: Poppins, system-ui, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 1.5rem;
-    text-align: left;
-    line-height: 1.3;
-  }
-  .membership-categories__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .membership-categories__btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1.25rem 1rem;
-    background: #4a90e2;
-    color: #fff;
-    font-family: Poppins, system-ui, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    text-align: center;
-  }
-  .membership-categories__btn:hover {
-    background: #3a7bc8;
-    color: #fff;
-  }
-  .membership-categories__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-  }
-  .membership-categories__label {
-    line-height: 1.3;
+    display: none !important;
   }
   .membership-cost {
     display: block;
