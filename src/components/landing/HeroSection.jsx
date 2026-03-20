@@ -6,6 +6,9 @@ import IMG3 from '../../assets/images/IMG3.webp';
 import ultraFastIcon from '../../assets/icons/ultra_fast.webp';
 import securePaymentsIcon from '../../assets/icons/secure_payments.webp';
 import simpleProcessIcon from '../../assets/icons/simple_process.webp';
+import razorpayLogo from '../../assets/logo/razorpay.webp';
+import unrivaledSecurityLogo from '../../assets/logo/unrivaled_security.webp';
+import pickupPaymentLogo from '../../assets/images/pickup_payment.webp';
 
 const CAROUSEL_IMAGES = [H1, H2, IMG3];
 const CAROUSEL_INTERVAL_MS = 4000;
@@ -33,20 +36,46 @@ function HeroSection() {
             Struggling to sell used phones or laptops at the best price — safely?
           </h1>
           <div className="hero__mobile-content">
-          <p className="hero__subheading">
-            A better way to sell used electronics is coming.
-          </p>
-          <div className="hero__buttons">
-            <Link to="/membership-plans/choose-plan?plan=promax" className="hero__btn hero__btn--early-access">
-              <svg className="hero__btn-icon hero__btn-icon--membership" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7v3h14v-3a7 7 0 00-7-7z" />
-              </svg>
-              Pre-order Subscription NOW
-            </Link>
-            <Link to="/how-it-works" className="hero__btn hero__btn--how-it-works">
-              How BelForce Works
-            </Link>
-          </div>
+            <h2 className="hero__mobile-title">
+              Sell used phones &amp; laptops — safely, for the best price.
+            </h2>
+            <p className="hero__subheading hero__subheading--desktop">
+              A better way to sell used electronics is coming.
+            </p>
+            <p className="hero__mobile-lead">
+              BelForce: fast, secure resale with doorstep Pickup exclusive benefits for members.
+            </p>
+            <div className="hero__buttons">
+              <Link
+                to="/membership-plans/choose-plan?plan=promax"
+                className="hero__btn hero__btn--early-access"
+              >
+                <svg className="hero__btn-icon hero__btn-icon--membership" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7v3h14v-3a7 7 0 00-7-7z" />
+                </svg>
+                <span className="hero__btn-text hero__btn-text--desktop">Pre-order Subscription NOW</span>
+                <span className="hero__btn-text hero__btn-text--mobile">Pre-order subscription</span>
+              </Link>
+              <Link to="/how-it-works" className="hero__btn hero__btn--how-it-works">
+                <span className="hero__btn-text hero__btn-text--desktop">How BelForce Works</span>
+                <span className="hero__btn-text hero__btn-text--mobile">How it works?</span>
+              </Link>
+            </div>
+
+            <div className="hero__mobile-icons" aria-hidden="true">
+              <div className="hero__mobile-icon">
+                <img src={razorpayLogo} alt="" className="hero__mobile-icon-img" loading="lazy" decoding="async" />
+                <span className="hero__mobile-icon-label">RAZORPAY</span>
+              </div>
+              <div className="hero__mobile-icon">
+                <img src={unrivaledSecurityLogo} alt="" className="hero__mobile-icon-img" loading="lazy" decoding="async" />
+                <span className="hero__mobile-icon-label">Secure Payments</span>
+              </div>
+              <div className="hero__mobile-icon">
+                <img src={pickupPaymentLogo} alt="" className="hero__mobile-icon-img" loading="lazy" decoding="async" />
+                <span className="hero__mobile-icon-label">Doorstep Pickup</span>
+              </div>
+            </div>
           </div>
           <div className="hero__features">
             <div className="hero__feature">

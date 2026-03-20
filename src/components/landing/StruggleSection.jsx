@@ -56,20 +56,51 @@ function StruggleSection() {
 
       {/* Mobile layout */}
       <div className="struggle__mobile">
-        <div className="struggle__banner">
-          <span className="struggle__banner-line1">The current struggle :</span>
-          <span className="struggle__banner-line2">why selling USED Electronics is Hard</span>
-        </div>
-        <h2 className="struggle__mobile-heading">The Problem with Classified Ads</h2>
-        <div className="struggle__mobile-list">
-          {MOBILE_PROBLEMS.map((text, i) => (
-            <div key={i} className="struggle__mobile-card">
-              <RedXIcon />
-              <span className="struggle__mobile-card-text">{text}</span>
+        <div className="struggle__mobile-problem-card">
+          <div className="struggle__mobile-problem-title-row">
+            <span className="struggle__mobile-problem-badge" aria-hidden>
+              !
+            </span>
+            <h2 className="struggle__mobile-problem-heading">The Problem with Classified Ads?</h2>
+          </div>
+
+          <div className="struggle__mobile-problem-categories">
+            <div className="struggle__mobile-problem-category">
+              <div className="struggle__mobile-problem-circle struggle__mobile-problem-circle--costly" aria-hidden>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E11D48" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 1v22" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <div className="struggle__mobile-problem-category-label">COSTLY ADS</div>
             </div>
-          ))}
+
+            <div className="struggle__mobile-problem-category">
+              <div className="struggle__mobile-problem-circle struggle__mobile-problem-circle--scammers" aria-hidden>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E11D48" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2l7 4v6c0 5-3 10-7 10S5 17 5 12V6l7-4z" />
+                  <path d="M9.5 10.5h.01" />
+                  <path d="M14.5 10.5h.01" />
+                  <path d="M9 15c1.5 1 4.5 1 6 0" />
+                </svg>
+              </div>
+              <div className="struggle__mobile-problem-category-label">SCAMMERS</div>
+            </div>
+
+            <div className="struggle__mobile-problem-category">
+              <div className="struggle__mobile-problem-circle struggle__mobile-problem-circle--unsafe" aria-hidden>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#E11D48" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 21s7-4.5 7-11a7 7 0 0 0-14 0c0 6.5 7 11 7 11z" />
+                  <path d="M12 10v5" />
+                  <path d="M12 7h.01" />
+                </svg>
+              </div>
+              <div className="struggle__mobile-problem-category-label">UNSAFE MEETUPS</div>
+            </div>
+          </div>
+
+          <p className="struggle__mobile-problem-footnote">Selling shouldn't be risky.</p>
         </div>
-        <p className="struggle__mobile-conclusion">Selling used items should feel simple — not risky and exhausting.</p>
       </div>
     </section>
   );
