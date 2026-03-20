@@ -71,9 +71,11 @@ function ChooseYourPlan() {
     <div className="choose-your-plan">
       <div className="choose-your-plan__hero-mobile">
         <h1 className="choose-your-plan__hero-mobile-heading">
-          <span className="choose-your-plan__hero-mobile-line1">A Better Way to Buy &</span>
+          <span className="choose-your-plan__hero-mobile-line1">
+            A Better Way to <span className="choose-your-plan__hero-mobile-highlight">Buy &</span>
+          </span>
           <span className="choose-your-plan__hero-mobile-line2">
-            Sell <span className="choose-your-plan__hero-mobile-highlight">Used Electronics.</span>
+            <span className="choose-your-plan__hero-mobile-highlight">Sell</span> Used Electronics.
           </span>
         </h1>
       </div>

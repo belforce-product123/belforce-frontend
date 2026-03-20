@@ -37,7 +37,7 @@ function HeroSection() {
           </h1>
           <div className="hero__mobile-content">
             <h2 className="hero__mobile-title">
-              Sell used phones &amp; laptops — safely, for the best price.
+              Sell used phones &amp; laptops — <span className="hero__mobile-safely">safely</span>, for the best price.
             </h2>
             <p className="hero__subheading hero__subheading--desktop">
               A better way to sell used electronics is coming.

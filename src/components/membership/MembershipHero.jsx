@@ -59,13 +59,22 @@ function MembershipHero() {
 
       <div className="membership-hero__mobile">
         <div className="membership-hero__mobile-inner">
-          <h1 className="membership-hero__mobile-heading">
-            a better , safer , faster way to
-            <br />
-            buy and sell USED
-            <br />
-            Electronics is coming..!
-          </h1>
+          <div className="membership-hero__mobile-heading-wrap">
+            <h1 className="membership-hero__mobile-title">
+              <span className="membership-hero__mobile-title-line membership-hero__mobile-title-line--1">
+                A better, safer way to
+              </span>
+              <span className="membership-hero__mobile-title-line membership-hero__mobile-title-line--2">
+                <span className="membership-hero__mobile-buy-sell">Buy &amp; Sell</span>
+              </span>
+              <span className="membership-hero__mobile-title-line membership-hero__mobile-title-line--3">
+                USED Electronics.
+              </span>
+            </h1>
+            <h3 className="membership-hero__mobile-subtitle">
+              The resale revolution is coming this April.
+            </h3>
+          </div>
           <div className="membership-hero__mobile-image-wrap">
             <img src={membershipHeroImg} alt="" className="membership-hero__mobile-img" decoding="async" />
             <div className="membership-hero__mobile-buttons">

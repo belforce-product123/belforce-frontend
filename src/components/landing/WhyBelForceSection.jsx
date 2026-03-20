@@ -1,3 +1,4 @@
+import React from 'react';
 import unrivaledSecurity from '../../assets/logo/unrivaled_security.webp';
 import speedEfficiency from '../../assets/logo/speed_efficenecy.webp';
 import maximumValue from '../../assets/logo/maximum_vlue.webp';
@@ -41,17 +42,19 @@ function WhyBelForceSection() {
       <div className="why-belforce__mobile">
         <h2 className="why-belforce__mobile-heading">Why BelForce?</h2>
         <div className="why-belforce__mobile-list">
-          {MOBILE_CARDS.map((card) => (
-            <div key={card.id} className="why-belforce__mobile-card">
-              <div className="why-belforce__mobile-icon">
-                <img src={blueTick} alt="" aria-hidden loading="lazy" decoding="async" />
+          <div className="why-belforce__mobile-track">
+            {[...MOBILE_CARDS, ...MOBILE_CARDS].map((card, idx) => (
+              <div key={`${card.id}-${idx}`} className="why-belforce__mobile-card">
+                <div className="why-belforce__mobile-icon">
+                  <img src={blueTick} alt="" aria-hidden loading="lazy" decoding="async" />
+                </div>
+                <div className="why-belforce__mobile-content">
+                  <h3 className="why-belforce__mobile-title">{card.title}</h3>
+                  <p className="why-belforce__mobile-desc">{card.description}</p>
+                </div>
               </div>
-              <div className="why-belforce__mobile-content">
-                <h3 className="why-belforce__mobile-title">{card.title}</h3>
-                <p className="why-belforce__mobile-desc">{card.description}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

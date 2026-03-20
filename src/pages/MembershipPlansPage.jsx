@@ -9,6 +9,7 @@ import SaveBigSection from '../components/membership/SaveBigSection';
 import MembershipProSection from '../components/membership/MembershipProSection';
 import MembershipHowItWorks from '../components/membership/MembershipHowItWorks';
 import MembershipPlansSection from '../components/membership/MembershipPlansSection';
+import MembershipWhyUpgradeProCards from '../components/membership/MembershipWhyUpgradeProCards';
 import MembershipCategoriesSection from '../components/membership/MembershipCategoriesSection';
 import MembershipCostComparison from '../components/membership/MembershipCostComparison';
 import MembershipSaveSection from '../components/membership/MembershipSaveSection';
@@ -42,10 +43,11 @@ function MembershipPlansPage() {
       <MembershipProSection />
       <MembershipHowItWorks />
       <MembershipPlansSection />
+      <MembershipWhyUpgradeProCards />
       <MembershipCategoriesSection />
       <MembershipCostComparison />
-      <MembershipSaveSection />
       <MoreCategoriesComingSection />
+      <MembershipSaveSection />
     </>
   );
 }
