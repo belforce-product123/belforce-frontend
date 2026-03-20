@@ -2,6 +2,7 @@ import HeroSection from '../components/landing/HeroSection';
 import StruggleSection from '../components/landing/StruggleSection';
 import BetterWaySection from '../components/landing/BetterWaySection';
 import WhyBelForceSection from '../components/landing/WhyBelForceSection';
+import MobilePlansTeaser from '../components/landing/MobilePlansTeaser';
 import SimpleFastSection from '../components/landing/SimpleFastSection';
 import EarlyAccessSection from '../components/landing/EarlyAccessSection';
 
@@ -12,6 +13,7 @@ function HomePage() {
       <StruggleSection />
       <BetterWaySection />
       <WhyBelForceSection />
+      <MobilePlansTeaser />
       <SimpleFastSection />
       <EarlyAccessSection />
     </>

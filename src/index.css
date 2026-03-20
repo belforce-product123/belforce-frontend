@@ -735,6 +735,9 @@ a {
 .why-belforce__mobile {
   display: none;
 }
+.mobile-plans-teaser {
+  display: none;
+}
 .why-belforce__heading {
   font-family: Poppins, system-ui, sans-serif;
   font-size: 2rem;
@@ -4260,6 +4263,10 @@ a {
     margin: 0 0 0.75rem;
   }
 
+  .hero__mobile-title * {
+    color: inherit;
+  }
+
   .hero__mobile-lead {
     display: block;
     font-family: Poppins, system-ui, sans-serif;
@@ -7163,8 +7170,18 @@ a {
   }
   .why-belforce__mobile-list {
     display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.85rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0.5rem;
+    scrollbar-width: none;
+  }
+  .why-belforce__mobile-list::-webkit-scrollbar {
+    display: none;
   }
   .why-belforce__mobile-card {
     display: flex;
@@ -7174,6 +7191,8 @@ a {
     border-radius: 12px;
     padding: 1.25rem 1.25rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    flex: 0 0 270px;
+    scroll-snap-align: start;
   }
   .why-belforce__mobile-icon {
     flex-shrink: 0;
@@ -7203,6 +7222,152 @@ a {
     color: #666;
     line-height: 1.5;
     margin: 0;
+  }
+
+  /* Mobile-only plans teaser (below Why BelForce) */
+  .mobile-plans-teaser {
+    display: block;
+    padding: 2rem 1rem 2.5rem;
+    background: #F8F9FAFF;
+    background-image:
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.6) 0%, transparent 50%),
+      radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 16px 16px;
+  }
+
+  .mobile-plans-teaser__inner {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .mobile-plans-teaser__title {
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.25rem;
+  }
+
+  .mobile-plans-teaser__subtitle {
+    font-family: "Open Sans", system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #6b7280;
+    margin: 0 0 1.25rem;
+  }
+
+  .mobile-plans-teaser__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-plans-teaser__card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem 1.15rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  .mobile-plans-teaser__card--promax {
+    border: 2px solid #2563eb;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-plans-teaser__badge {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: #16a34a;
+    color: #fff;
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .mobile-plans-teaser__card-title {
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.35rem;
+  }
+
+  .mobile-plans-teaser__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .mobile-plans-teaser__price-amount {
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: #111827;
+  }
+
+  .mobile-plans-teaser__price-note {
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  .mobile-plans-teaser__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .mobile-plans-teaser__li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .mobile-plans-teaser__check {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 2px solid #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #16a34a;
+  }
+
+  .mobile-plans-teaser__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
+  .mobile-plans-teaser__btn--outline {
+    background: #fff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
   }
   .simple-fast {
     padding: 2rem 1rem 3rem;
