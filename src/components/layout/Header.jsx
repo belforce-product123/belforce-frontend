@@ -9,6 +9,15 @@ const NAV_LINKS = [
   { label: "FAQ's", to: '/faq' },
 ];
 
+/** Mobile hamburger menu only — includes How it works before FAQ */
+const MOBILE_NAV_LINKS = [
+  { label: 'Home', to: '/' },
+  { label: 'Subscription Plans', to: '/membership-plans' },
+  { label: 'How it works', to: '/how-it-works' },
+  { label: 'About & Support', to: '/company-support' },
+  { label: "FAQ's", to: '/faq' },
+];
+
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -38,6 +47,7 @@ function Header() {
     if (to === '/') return location.pathname === '/';
     if (to.startsWith('/membership-plans')) return location.pathname.startsWith('/membership-plans');
     if (to.startsWith('/company-support')) return location.pathname.startsWith('/company-support');
+    if (to === '/how-it-works') return location.pathname.startsWith('/how-it-works');
     if (to === '/faq') return location.pathname.startsWith('/faq');
     return location.pathname.startsWith(to);
   };
@@ -112,9 +122,9 @@ function Header() {
               </button>
             </div>
             <nav className="header__mobile-nav" aria-label="Mobile navigation links">
-              {NAV_LINKS.map((link) => (
+              {MOBILE_NAV_LINKS.map((link) => (
                 <Link
-                  key={link.label}
+                  key={`${link.to}-${link.label}`}
                   to={link.to}
                   onClick={() => setMenuOpen(false)}
                   className={`header__mobile-link header__nav-link${
