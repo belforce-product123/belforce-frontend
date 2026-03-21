@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import logoImg from '../../assets/logo/logo.webp';
+import logoImg from '../../assets/logo/main_logo.png';
 import faqsBannerImg from '../../assets/images/faqs.webp';
 
 const FAQ_MEMBERSHIP = [

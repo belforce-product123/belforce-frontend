@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoImg from '../../assets/logo/logo.webp';
+import logoImg from '../../assets/logo/main_logo.png';
 import razorpayImg from '../../assets/logo/razorpay.webp';
 import shieldImg from '../../assets/logo/2nd.webp';
 import certifiedImg from '../../assets/logo/certified.webp';

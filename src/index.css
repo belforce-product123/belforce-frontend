@@ -88,9 +88,10 @@ a {
   width: auto;
 }
 .header__name {
-  font-size: 1.25rem;
+  font-family: Poppins, system-ui, sans-serif;
+  font-size: 1.65rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: #1a1a1a;
 }
 .header__btn-early-access {
@@ -4560,7 +4561,8 @@ a {
   }
   .header__name--mobile {
     display: inline;
-    font-size: 1rem;
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     color: #1a1a1a;
@@ -4837,56 +4839,67 @@ a {
     gap: 0.5rem;
   }
   .hero__right {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
     margin-top: 1rem;
     margin-right: 0;
     margin-bottom: 0;
     padding: 0;
+    box-sizing: border-box;
     background: transparent;
   }
   .hero__carousel {
-    max-width: none;
+    position: relative;
+    max-width: 100%;
     width: 100%;
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero__carousel-arrow {
-    color: #00000080;
-  }
-  .hero__carousel-arrow:hover {
-    color: #000c;
-  }
-  .hero__carousel-arrow--left {
-    left: 4px;
-  }
-  .hero__carousel-arrow--right {
-    right: 4px;
+    display: none;
   }
   .hero__carousel-main {
-    box-shadow: 0 4px 12px #00000026;
-    border-radius: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 7px #171a1f21,
+      0 0 2px #171a1f14;
   }
   .hero__thumbnails {
     display: none;
   }
   .hero__dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    z-index: 4;
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
   }
   .hero__dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #00000040;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.2);
     transition:
       background 0.2s,
-      transform 0.2s;
+      transform 0.2s,
+      border-color 0.2s;
   }
   .hero__dot--active {
-    background: #0009;
-    transform: scale(1.15);
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: scale(1.2);
+    box-shadow: 0 1px 4px rgba(37, 99, 235, 0.45);
   }
   .hero__features {
     display: none;
@@ -7808,9 +7821,14 @@ a {
     max-width: none;
     margin: 0 -1rem;
     padding: 2rem 1.5rem;
-    background: #ffffff;
-    border-radius: 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background:
+      linear-gradient(#ffffff, #ffffff) padding-box,
+      linear-gradient(180deg, #9167e4 0%, #e46787 100%) border-box;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    box-shadow:
+      0 4px 7px #171a1f21,
+      0 0 2px #171a1f14;
     text-align: center;
   }
   .better-way__card-heading {

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
 import womenImg from '../../assets/images/women.webp';
-import logoPngUrl from '../../assets/logo/logo.png';
+import logoPngUrl from '../../assets/logo/main_logo.png';
 
 const PLAN_CONFIG = {
   pro: { title: 'BelForce Pro', amountInr: 699 },

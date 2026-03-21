@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import H1 from '../../assets/images/h1.webp';
+import H11 from '../../assets/images/h11.png';
 import H2 from '../../assets/images/h2.webp';
 import IMG3 from '../../assets/images/IMG3.webp';
 import ultraFastIcon from '../../assets/icons/ultra_fast.webp';
@@ -8,25 +9,35 @@ import securePaymentsIcon from '../../assets/icons/secure_payments.webp';
 import simpleProcessIcon from '../../assets/icons/simple_process.webp';
 import razorpayLogo from '../../assets/logo/razorpay.webp';
 import unrivaledSecurityLogo from '../../assets/logo/unrivaled_security.webp';
-import pickupPaymentLogo from '../../assets/images/pickup_payment.webp';
+import deliveryPickupIcon from '../../assets/icons/delivery_pickup.png';
+import { useIsMobileMaxWidth } from '../../hooks/useIsMobileMaxWidth';
 
-const CAROUSEL_IMAGES = [H1, H2, IMG3];
 const CAROUSEL_INTERVAL_MS = 4000;
 
 function HeroSection() {
+  const isMobile = useIsMobileMaxWidth(768);
+  const carouselImages = useMemo(
+    () => (isMobile ? [H11, IMG3] : [H1, H2, IMG3]),
+    [isMobile]
+  );
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    setActiveIndex(0);
+  }, [isMobile]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+      setActiveIndex((prev) => (prev + 1) % carouselImages.length);
     }, CAROUSEL_INTERVAL_MS);
     return () => clearInterval(timer);
-  }, []);
+  }, [carouselImages.length]);
 
   const goToSlide = (index) => setActiveIndex(index);
 
-  const goPrev = () => setActiveIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length);
-  const goNext = () => setActiveIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+  const goPrev = () =>
+    setActiveIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  const goNext = () => setActiveIndex((prev) => (prev + 1) % carouselImages.length);
 
   return (
     <section className="hero">
@@ -72,7 +83,13 @@ function HeroSection() {
                 <span className="hero__mobile-icon-label">Secure Payments</span>
               </div>
               <div className="hero__mobile-icon">
-                <img src={pickupPaymentLogo} alt="" className="hero__mobile-icon-img" loading="lazy" decoding="async" />
+                <img
+                  src={deliveryPickupIcon}
+                  alt=""
+                  className="hero__mobile-icon-img hero__mobile-icon-img--delivery"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="hero__mobile-icon-label">Doorstep Pickup</span>
               </div>
             </div>
@@ -106,9 +123,9 @@ function HeroSection() {
               </svg>
             </button>
             <div className="hero__carousel-main">
-              {CAROUSEL_IMAGES.map((img, i) => (
+              {carouselImages.map((img, i) => (
                 <img
-                  key={i}
+                  key={`${isMobile ? 'm' : 'd'}-${i}`}
                   src={img}
                   alt={`Slide ${i + 1}`}
                   className={`hero__carousel-img ${i === activeIndex ? 'hero__carousel-img--active' : ''}`}
@@ -122,11 +139,20 @@ function HeroSection() {
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </button>
+            <div className="hero__dots" aria-hidden>
+              {carouselImages.map((_, i) => (
+                <span
+                  key={i}
+                  className={`hero__dot ${i === activeIndex ? 'hero__dot--active' : ''}`}
+                  role="presentation"
+                />
+              ))}
+            </div>
           </div>
           <div className="hero__thumbnails">
-            {CAROUSEL_IMAGES.map((img, i) => (
+            {carouselImages.map((img, i) => (
               <button
-                key={i}
+                key={`${isMobile ? 'm' : 'd'}-t-${i}`}
                 type="button"
                 className={`hero__thumbnail ${i === activeIndex ? 'hero__thumbnail--active' : ''}`}
                 onClick={() => goToSlide(i)}
@@ -134,15 +160,6 @@ function HeroSection() {
               >
                 <img src={img} alt={`Thumbnail ${i + 1}`} loading="lazy" decoding="async" />
               </button>
-            ))}
-          </div>
-          <div className="hero__dots" aria-hidden>
-            {CAROUSEL_IMAGES.map((_, i) => (
-              <span
-                key={i}
-                className={`hero__dot ${i === activeIndex ? 'hero__dot--active' : ''}`}
-                role="presentation"
-              />
             ))}
           </div>
         </div>
