@@ -283,10 +283,12 @@ function PaymentSuccess() {
       cursorY = addrStartY + addrH + 18;
     }
 
-    // Support / verification card
+    // Support / verification card (support email = SUPPORT_EMAIL only — not the customer email above)
     const helpStartY = cursorY;
     let hy = helpStartY + 32;
     hy = drawSectionTitle(left + pad, hy, 'Support & Verification');
+    hy = drawKV(left + pad, hy, 'Support email', SUPPORT_EMAIL, { mono: true });
+    hy = drawKV(left + pad, hy, 'WhatsApp', '+91 8374348314', { mono: true });
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(55, 65, 81);
     doc.setFontSize(fonts.value);
@@ -294,15 +296,16 @@ function PaymentSuccess() {
       'This receipt confirms a successful membership payment on BelForce.',
       'Keep your Membership ID safe — it is required for login and support.',
       'Support hours: 9:00 AM – 9:00 PM',
-      `WhatsApp: +91 8374348314   |   Email: ${SUPPORT_EMAIL}`,
     ];
     const helpLines = helpText.flatMap((t) => wrap(t, contentWidth - pad * 2));
     doc.text(helpLines, left + pad, hy);
     hy += helpLines.length * lineH + 10;
-    const helpH = Math.max(130, hy - helpStartY + 10);
+    const helpH = Math.max(150, hy - helpStartY + 10);
     drawRoundedCard(left, helpStartY, contentWidth, helpH);
     hy = helpStartY + 32;
     hy = drawSectionTitle(left + pad, hy, 'Support & Verification');
+    hy = drawKV(left + pad, hy, 'Support email', SUPPORT_EMAIL, { mono: true });
+    hy = drawKV(left + pad, hy, 'WhatsApp', '+91 8374348314', { mono: true });
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(55, 65, 81);
     doc.setFontSize(11.2);
