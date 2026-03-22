@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
 import { SOCIAL_LINKS } from '../../constants/socialLinks';
+import { SUPPORT_EMAIL } from '../../constants/supportContact';
 import womenImg from '../../assets/images/women.webp';
 import logoPngUrl from '../../assets/logo/main_logo.png';
 
@@ -292,7 +293,7 @@ function PaymentSuccess() {
       'This receipt confirms a successful membership payment on BelForce.',
       'Keep your Membership ID safe — it is required for login and support.',
       'Support hours: 9:00 AM – 9:00 PM',
-      'WhatsApp: +91 8374348314   |   Email: support@belforce.com',
+      `WhatsApp: +91 8374348314   |   Email: ${SUPPORT_EMAIL}`,
     ];
     const helpLines = helpText.flatMap((t) => wrap(t, contentWidth - pad * 2));
     doc.text(helpLines, left + pad, hy);

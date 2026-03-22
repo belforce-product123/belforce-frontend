@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SUPPORT_EMAIL } from '../../constants/supportContact';
 import { useNavigate, Link } from 'react-router-dom';
 import logoImg from '../../assets/logo/main_logo.png';
 import faqsBannerImg from '../../assets/images/faqs.webp';
@@ -54,7 +55,7 @@ const FAQ_MEMBERSHIP = [
   {
     id: 'm9',
     question: 'What if I face issues after purchasing membership?',
-    answer: 'Our support team is always available via WhatsApp, call, or email to help you.',
+    answer: `Our support team is always available via WhatsApp, call, or email (${SUPPORT_EMAIL}) to help you.`,
   },
   {
     id: 'm10',
@@ -91,7 +92,7 @@ const FAQ_COMPANY = [
   {
     id: 'c5',
     question: 'How can I contact BelForce support?',
-    answer: 'You can reach us via WhatsApp, phone call, or email during working hours (9:00 AM – 9:00 PM).',
+    answer: `You can reach us via WhatsApp, phone call, or email at ${SUPPORT_EMAIL} during working hours (9:00 AM – 9:00 PM).`,
   },
 ];
 

@@ -7,9 +7,9 @@ import off1 from '../../assets/images/office_gallery/off1.webp';
 import off2 from '../../assets/images/office_gallery/off2.webp';
 import off3 from '../../assets/images/office_gallery/off3.webp';
 import off4 from '../../assets/images/office_gallery/off4.webp';
+import { SUPPORT_EMAIL } from '../../constants/supportContact';
 
 const SUPPORT_PHONE = '+918374348314';
-const SUPPORT_EMAIL = 'support@belforce.com';
 
 function CompanySupport() {
   const navigate = useNavigate();
