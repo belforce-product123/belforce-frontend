@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import verifiedPlatform from '../../assets/logo/veridied_plaform.webp';
+import verifiedPurchase from '../../assets/images/verified_purchase.png';
 import earlyBird from '../../assets/logo/early_bird.webp';
 import blueTick from '../../assets/logo/blue_tick.webp';
 import appUnderDev from '../../assets/logo/app_uunder_dev.webp';
@@ -83,7 +84,14 @@ function EarlyAccessSection() {
               <span>Secure Payments</span>
             </div>
             <div className="early-access__mobile-feature">
-              <img src={verifiedPlatform} alt="" aria-hidden className="early-access__mobile-feature-icon early-access__mobile-feature-icon--green" loading="lazy" decoding="async" />
+              <img
+                src={verifiedPurchase}
+                alt=""
+                aria-hidden
+                className="early-access__mobile-feature-icon early-access__mobile-feature-icon--verified-purchase"
+                loading="lazy"
+                decoding="async"
+              />
               <span>Verified Process</span>
             </div>
           </div>

@@ -8282,6 +8282,10 @@ a {
   .early-access__mobile-feature-icon--green {
     filter: hue-rotate(80deg) saturate(1.2);
   }
+  /* verified_purchase.png — use original colors (no green hue filter) */
+  .early-access__mobile-feature-icon--verified-purchase {
+    filter: none;
+  }
   .early-access__stores-card {
     width: 100%;
     max-width: 340px;
