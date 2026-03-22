@@ -9,7 +9,8 @@ import logoPngUrl from '../../assets/logo/main_logo.png';
 const PLAN_CONFIG = {
   pro: { title: 'BelForce Pro', amountInr: 699 },
   promax: { title: 'BelForce Pro Max', amountInr: 1599 },
-  // Test-only plan removed from client-facing UI
+  /** Test-only — ₹1 Razorpay flow (must match backend `dummy_plan`) */
+  dummy_plan: { title: 'Dummy Plan (Test)', amountInr: 1 },
 };
 
 const BENEFITS = [

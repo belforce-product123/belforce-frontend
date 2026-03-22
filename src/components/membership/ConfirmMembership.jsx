@@ -24,7 +24,15 @@ const PLAN_CONFIG = {
       '1 year or 20 Sellings validity',
     ],
   },
-  // Test-only plan removed from client-facing UI
+  dummy_plan: {
+    title: 'Dummy Plan (Test)',
+    price: '₹1',
+    benefits: [
+      'Razorpay checkout (₹1 test charge)',
+      'Backend verify + payment success redirect',
+      'Receipt email when SMTP is configured',
+    ],
+  },
 };
 
 function ConfirmMembership({ plan = 'pro' }) {

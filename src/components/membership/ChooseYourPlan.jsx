@@ -59,13 +59,23 @@ const PRO_MAX_FEATURES = [
 function ChooseYourPlan() {
   const [searchParams] = useSearchParams();
   const planRaw = searchParams.get('plan');
-  const plan = planRaw === 'pro' || planRaw === 'promax' ? planRaw : 'promax';
+  const plan =
+    planRaw === 'pro' || planRaw === 'promax' || planRaw === 'dummy_plan' ? planRaw : 'promax';
 
   const isPro = plan === 'pro';
-  const selectedName = isPro ? 'BelForce Pro' : 'BelForce Pro Max';
-  const selectedTagline = isPro ? 'For occasional sellers' : 'For Frequent resellers';
-  const selectedPriceAmount = isPro ? '₹699' : '₹1599';
-  const selectedPriceNote = isPro ? '/lifetime' : '/2 years or 20 listings';
+  const isDummy = plan === 'dummy_plan';
+  const selectedName = isDummy
+    ? 'Dummy Plan (Test)'
+    : isPro
+      ? 'BelForce Pro'
+      : 'BelForce Pro Max';
+  const selectedTagline = isDummy
+    ? 'End-to-end payment flow test'
+    : isPro
+      ? 'For occasional sellers'
+      : 'For Frequent resellers';
+  const selectedPriceAmount = isDummy ? '₹1' : isPro ? '₹699' : '₹1599';
+  const selectedPriceNote = isDummy ? ' test payment' : isPro ? '/lifetime' : '/2 years or 20 listings';
 
   return (
     <div className="choose-your-plan">
@@ -156,7 +166,7 @@ function ChooseYourPlan() {
               Best value to sell faster with less effort.
             </p>
             <p className="choose-your-plan__mobile-card-price">₹699</p>
-            {isPro ? (
+            {plan === 'pro' ? (
               <button type="button" className="choose-your-plan__mobile-card-btn choose-your-plan__mobile-card-btn--selected" disabled>
                 Plan Selected
               </button>
@@ -195,7 +205,7 @@ function ChooseYourPlan() {
               ))}
             </ul>
             <p className="choose-your-plan__mobile-card-price">₹1599</p>
-            {!isPro ? (
+            {plan === 'promax' ? (
               <button type="button" className="choose-your-plan__mobile-card-btn choose-your-plan__mobile-card-btn--selected" disabled>
                 Plan Selected
               </button>
@@ -333,7 +343,7 @@ function ChooseYourPlan() {
                 </li>
               ))}
             </ul>
-            {isPro ? (
+            {plan === 'pro' ? (
               <button type="button" className="choose-your-plan__btn choose-your-plan__btn--selected" disabled>
                 Plan Selected
               </button>
@@ -363,7 +373,7 @@ function ChooseYourPlan() {
                 </li>
               ))}
             </ul>
-            {!isPro ? (
+            {plan === 'promax' ? (
               <button type="button" className="choose-your-plan__btn choose-your-plan__btn--selected" disabled>
                 Plan Selected
               </button>
