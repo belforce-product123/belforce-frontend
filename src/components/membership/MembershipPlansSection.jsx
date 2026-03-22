@@ -84,6 +84,7 @@ function MembershipPlansSection() {
           <Link to="/membership-plans/choose-plan?plan=promax" className="membership-plans__btn membership-plans__btn--promax">Choose Pro Max</Link>
         </div>
 
+        {/* Test-only ₹1 Razorpay flow — uncomment to show dummy_plan card in UI
         <div className="membership-plans__card">
           <span className="membership-plans__badge">
             Test • ₹1
@@ -106,6 +107,7 @@ function MembershipPlansSection() {
           <p className="membership-plans__price">₹1</p>
           <Link to="/membership-plans/choose-plan?plan=dummy_plan" className="membership-plans__btn">Choose Dummy Plan</Link>
         </div>
+        */}
       </div>
     </section>
   );

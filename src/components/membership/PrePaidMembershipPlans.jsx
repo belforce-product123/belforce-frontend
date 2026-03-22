@@ -69,6 +69,7 @@ function PrePaidMembershipPlans() {
             </Link>
           </div>
 
+          {/* Test-only ₹1 Razorpay flow — uncomment to show dummy_plan card in UI
           <div className="prepaid-membership-plans__card">
             <div className="prepaid-membership-plans__badge">Test Plan</div>
             <h3 className="prepaid-membership-plans__card-title">Dummy Plan</h3>
@@ -92,6 +93,7 @@ function PrePaidMembershipPlans() {
               Choose Dummy Plan
             </Link>
           </div>
+          */}
         </div>
         <div className="prepaid-membership-plans__bottom-cta">
           <p className="prepaid-membership-plans__bottom-text">Check out Subscription details and benefits in selling used items</p>
