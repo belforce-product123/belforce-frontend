@@ -96,7 +96,7 @@ function MembershipCostComparison() {
             <div className="membership-cost__pricing">
               <div className="membership-cost__row membership-cost__row--highlight">
                 <span className="membership-cost__label">20 ads</span>
-                <span className="membership-cost__value membership-cost__value--bold">₹1,599</span>
+                <span className="membership-cost__value membership-cost__value--bold">₹999</span>
               </div>
               {BELFORCE_FEATURES.map((feature, i) => (
                 <div key={i} className="membership-cost__row">

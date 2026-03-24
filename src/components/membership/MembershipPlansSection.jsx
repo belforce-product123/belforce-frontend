@@ -46,7 +46,7 @@ function MembershipPlansSection() {
               <span className="membership-plans__benefit-text">{PRO_BENEFITS[4]}</span>
             </li>
           </ul>
-          <p className="membership-plans__price">₹699</p>
+          <p className="membership-plans__price">₹599</p>
           <Link to="/membership-plans/choose-plan?plan=pro" className="membership-plans__btn">Choose Pro</Link>
         </div>
 
@@ -80,7 +80,7 @@ function MembershipPlansSection() {
             </span>
             Built for power users. No compromises.
           </p>
-          <p className="membership-plans__price">₹1599</p>
+          <p className="membership-plans__price">₹999</p>
           <Link to="/membership-plans/choose-plan?plan=promax" className="membership-plans__btn membership-plans__btn--promax">Choose Pro Max</Link>
         </div>
 

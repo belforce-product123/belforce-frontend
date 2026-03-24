@@ -96,7 +96,7 @@ function EnterYourDetails() {
       return {
         badge: null,
         name: 'BelForce Pro Plan',
-        price: '699 / lifetime',
+        price: '599 / lifetime',
         bullets: [
           'Access to standard seller tools',
           'Standard visibility & chat access',
@@ -108,7 +108,7 @@ function EnterYourDetails() {
     return {
       badge: 'Best Value',
       name: 'BelForce Pro Max Plan',
-      price: '1599 / year',
+      price: '999 / year',
       bullets: [
         'Access to premium buyer tools',
         'Priority support & faster transactions',

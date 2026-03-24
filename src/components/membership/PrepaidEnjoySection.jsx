@@ -47,7 +47,7 @@ function PrepaidEnjoySection() {
           <div className="prepaid-enjoy__compare">
             <div className="prepaid-enjoy__compare-row">
               <span className="prepaid-enjoy__compare-label prepaid-enjoy__compare-label--belforce">BELFORCE MEMBERSHIP</span>
-              <span className="prepaid-enjoy__compare-value">₹1,599</span>
+              <span className="prepaid-enjoy__compare-value">₹999</span>
             </div>
             <div className="prepaid-enjoy__compare-bar-wrap">
               <div className="prepaid-enjoy__compare-bar prepaid-enjoy__compare-bar--blue" style={{ width: '18%' }} />

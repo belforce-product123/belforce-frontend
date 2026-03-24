@@ -30,7 +30,7 @@ function MobilePlansTeaser() {
           <div className="mobile-plans-teaser__card">
             <div className="mobile-plans-teaser__card-title">BelForce Pro</div>
             <div className="mobile-plans-teaser__price">
-              <span className="mobile-plans-teaser__price-amount">₹699</span>
+              <span className="mobile-plans-teaser__price-amount">₹599</span>
               <span className="mobile-plans-teaser__price-note">valid till 1 year / 10 sellings</span>
             </div>
 
@@ -55,7 +55,7 @@ function MobilePlansTeaser() {
             <span className="mobile-plans-teaser__badge">Best Value</span>
             <div className="mobile-plans-teaser__card-title">BelForce Pro Max</div>
             <div className="mobile-plans-teaser__price">
-              <span className="mobile-plans-teaser__price-amount">₹1599</span>
+              <span className="mobile-plans-teaser__price-amount">₹999</span>
               <span className="mobile-plans-teaser__price-note">valid upto 2 years / 20 sellings</span>
             </div>
 

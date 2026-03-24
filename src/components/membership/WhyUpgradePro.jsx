@@ -15,7 +15,7 @@ const TYPICAL_POINTS = [
 ];
 
 const PRO_MAX_POINTS = [
-  '20 ads listing: ₹1,599 (one-time fee)',
+  '20 ads listing: ₹999 (one-time fee)',
   'Sell up to 20 items',
   'Free pickup at your doorstep',
   'Low/zero commission on sales',

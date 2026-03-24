@@ -7,13 +7,13 @@ import { loadRazorpayCheckout } from '../../utils/razorpay';
 const PLAN_CONFIG = {
   pro: {
     title: 'BelForce Pro',
-    amount: '699',
-    displayAmount: '₹699.00',
+    amount: '599',
+    displayAmount: '₹599.00',
   },
   promax: {
     title: 'BelForce Pro Max',
-    amount: '1599',
-    displayAmount: '₹1,599.00',
+    amount: '999',
+    displayAmount: '₹999.00',
   },
   dummy_plan: {
     title: 'Dummy Plan (Test)',

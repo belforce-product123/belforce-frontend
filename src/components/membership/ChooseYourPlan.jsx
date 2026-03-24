@@ -74,7 +74,7 @@ function ChooseYourPlan() {
     : isPro
       ? 'For occasional sellers'
       : 'For Frequent resellers';
-  const selectedPriceAmount = isDummy ? '₹1' : isPro ? '₹699' : '₹1599';
+  const selectedPriceAmount = isDummy ? '₹1' : isPro ? '₹599' : '₹999';
   const selectedPriceNote = isDummy ? ' test payment' : isPro ? '/lifetime' : '/2 years or 20 listings';
 
   return (
@@ -165,7 +165,7 @@ function ChooseYourPlan() {
               </span>
               Best value to sell faster with less effort.
             </p>
-            <p className="choose-your-plan__mobile-card-price">₹699</p>
+            <p className="choose-your-plan__mobile-card-price">₹599</p>
             {plan === 'pro' ? (
               <button type="button" className="choose-your-plan__mobile-card-btn choose-your-plan__mobile-card-btn--selected" disabled>
                 Plan Selected
@@ -204,7 +204,7 @@ function ChooseYourPlan() {
                 </li>
               ))}
             </ul>
-            <p className="choose-your-plan__mobile-card-price">₹1599</p>
+            <p className="choose-your-plan__mobile-card-price">₹999</p>
             {plan === 'promax' ? (
               <button type="button" className="choose-your-plan__mobile-card-btn choose-your-plan__mobile-card-btn--selected" disabled>
                 Plan Selected
@@ -231,7 +231,7 @@ function ChooseYourPlan() {
             </div>
             <div className="choose-your-plan__mobile-why-col choose-your-plan__mobile-why-col--right">
               <p className="choose-your-plan__mobile-why-col-title">BELFORCE PRO MAX</p>
-              <p className="choose-your-plan__mobile-why-col-price choose-your-plan__mobile-why-col-price--green">₹1,599 Flat</p>
+              <p className="choose-your-plan__mobile-why-col-price choose-your-plan__mobile-why-col-price--green">₹999 Flat</p>
               <p className="choose-your-plan__mobile-why-col-desc">Automated reach, secure escrow, 100% safety</p>
             </div>
           </div>
@@ -332,7 +332,7 @@ function ChooseYourPlan() {
             <h3 className="choose-your-plan__card-title">BelForce Pro</h3>
             <p className="choose-your-plan__card-sub">For occasional sellers</p>
             <p className="choose-your-plan__card-price">
-              <span className="choose-your-plan__price-amount">₹699</span>
+              <span className="choose-your-plan__price-amount">₹599</span>
               <span className="choose-your-plan__price-note">/lifetime</span>
             </p>
             <ul className="choose-your-plan__features">
@@ -362,7 +362,7 @@ function ChooseYourPlan() {
             <h3 className="choose-your-plan__card-title">BelForce Pro Max</h3>
             <p className="choose-your-plan__card-sub">For Frequent resellers</p>
             <p className="choose-your-plan__card-price">
-              <span className="choose-your-plan__price-amount">₹1599</span>
+              <span className="choose-your-plan__price-amount">₹999</span>
               <span className="choose-your-plan__price-note">/2 years or 20 listings</span>
             </p>
             <ul className="choose-your-plan__features">

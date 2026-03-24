@@ -7,8 +7,8 @@ import womenImg from '../../assets/images/women.webp';
 import logoPngUrl from '../../assets/logo/main_logo.png';
 
 const PLAN_CONFIG = {
-  pro: { title: 'BelForce Pro', amountInr: 699 },
-  promax: { title: 'BelForce Pro Max', amountInr: 1599 },
+  pro: { title: 'BelForce Pro', amountInr: 599 },
+  promax: { title: 'BelForce Pro Max', amountInr: 999 },
   /** Test-only — ₹1 Razorpay flow (must match backend `dummy_plan`) */
   dummy_plan: { title: 'Dummy Plan (Test)', amountInr: 1 },
 };

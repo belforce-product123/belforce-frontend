@@ -39,7 +39,7 @@ function PrePaidMembershipPlans() {
             <p className="prepaid-membership-plans__card-cta">Great value for starting out on BelForce.</p>
             <div className="prepaid-membership-plans__price">
               <span className="prepaid-membership-plans__currency">₹</span>
-              <span className="prepaid-membership-plans__amount">699</span>
+              <span className="prepaid-membership-plans__amount">599</span>
             </div>
             <Link to="/membership-plans/choose-plan?plan=pro" className="prepaid-membership-plans__btn">
               Choose Pro
@@ -62,7 +62,7 @@ function PrePaidMembershipPlans() {
             <p className="prepaid-membership-plans__card-cta">Maximum savings, maximum convenience. Our top recommendation.</p>
             <div className="prepaid-membership-plans__price">
               <span className="prepaid-membership-plans__currency">₹</span>
-              <span className="prepaid-membership-plans__amount">1599</span>
+              <span className="prepaid-membership-plans__amount">999</span>
             </div>
             <Link to="/membership-plans/choose-plan?plan=promax" className="prepaid-membership-plans__btn">
               Choose Pro Max

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const PLAN_CONFIG = {
   pro: {
     title: 'BelForce Pro',
-    price: '₹699',
+    price: '₹599',
     benefits: [
       'Priority listings',
       'Lower platform fees (up to 50%)',
@@ -14,7 +14,7 @@ const PLAN_CONFIG = {
   },
   promax: {
     title: 'BelForce Pro Max',
-    price: '₹1,599',
+    price: '₹999',
     benefits: [
       'Top priority listings & deals',
       'Zero / lowest platform fees',

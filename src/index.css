@@ -7907,7 +7907,8 @@ a {
   .why-belforce__mobile-track {
     display: flex;
     width: max-content;
-    animation: why-belforce-mobile-cards-scroll 18s linear infinite;
+    gap: 1rem;
+    animation: why-belforce-mobile-cards-scroll 30s linear infinite;
   }
   .why-belforce__mobile-card {
     display: flex;
